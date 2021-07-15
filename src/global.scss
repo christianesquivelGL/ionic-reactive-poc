@@ -10,17 +10,120 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "~@ionic/angular/css/core.css";
+@import '~@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import "~@ionic/angular/css/normalize.css";
-@import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~tippy.js/dist/tippy.css';
+
+@import 'theme/constants.scss';
+
+ion-item {
+  --ion-item-background: transparent;
+}
+
+ion-menu {
+  @media (min-width: 768px) {
+    max-width: 320px;
+    border-right: none;
+  }
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-light {
+  background-color: var(--ion-color-light);
+}
+
+.bg-dark {
+  background-color: var(--ion-color-dark);
+}
+
+.bg-primary {
+  background-color: var(--ion-color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--ion-color-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--ion-color-tertiary);
+}
+
+.bg-profile {
+  background-image: linear-gradient(
+    135deg,
+    var(--ion-color-primary-tint),
+    var(--ion-color-primary)
+  );
+}
+
+.bold {
+  font-weight: 800 !important;
+}
+
+.text-smaller {
+  font-size: smaller;
+}
+
+.text-larger {
+  font-size: larger;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-light {
+  color: var(--ion-color-light);
+}
+
+.text-primary {
+  color: var(--ion-color-primary);
+}
+
+.text-dark {
+  color: var(--ion-color-dark);
+}
+
+ion-toolbar.user-info {
+  --background: var(--ion-color-primary);
+
+  ion-text {
+    word-break: break-all;
+  }
+}
+
+ion-toolbar {
+  &.ion-color-primary {
+    --ion-color-base: linear-gradient(
+      0deg,
+      var(--dark_blue),
+      var(--blue)
+    ) !important;
+  }
+}
+
+.standard-content-width {
+  max-width: $max-content-width;
+}
+
+.alert-wrapper {
+  max-width: unset !important;
+  min-width: 30% !important;
+}
