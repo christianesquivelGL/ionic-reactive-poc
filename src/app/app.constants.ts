@@ -1,11 +1,10 @@
 export const CONSTANTS = {
   production: false,
-  parseAppId: 'ilapa',
-  parseServerUrl: 'https://ilapa-dev.herokuapp.com',
-  ionicComponentConfig: {
-    toast: {
-      duration: 15000,
-    },
+  parseAppId: 'YGuPHs1TH2xRII3Ljyh9Yn3Y3YFw4r9RzbDF5O8T',
+  parseJSKey: 'fOIuewAcElU1qDfQQF85BgJ70OFYuDk9rPbJKTMo',
+  parseServerUrl: 'https://parseapi.back4app.com/',
+  settings: {
+    pageSize: 15,
   },
   regex: {
     email: /\S+@\S+\.\S+/,
