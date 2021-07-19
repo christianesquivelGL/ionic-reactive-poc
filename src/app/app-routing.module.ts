@@ -4,14 +4,14 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'character-setup',
-    pathMatch: 'full',
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthPageModule),
   },
   {
-    path: 'character-setup',
+    path: 'character',
     loadChildren: () =>
-      import('./features/character-setup/character-setup.module').then(
-        (m) => m.CharacterSetupPageModule,
+      import('./features/character/character.module').then(
+        (m) => m.CharacterModule,
       ),
   },
 ];

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Characters</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding standard-content-width mx-auto">
+    <ion-card color="light">
+      <ion-card-header>
+        <ion-card-title>Characters</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        // TODO: Make dumb component for this list
+        <ion-item *ngFor="let item of list">
+          <ion-label>
+            {{ item.get('name') }}
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
