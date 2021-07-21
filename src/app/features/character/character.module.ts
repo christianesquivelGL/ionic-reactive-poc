@@ -7,6 +7,7 @@ import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
 import { RootCharacterComponentRoutingModule } from './containers/root-character/root-character-routing.module';
 import { RootCharacterComponent } from './containers/root-character/root-character.component';
+import { ListCharacterComponent } from './components/list-character/list-character.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { RootCharacterComponent } from './containers/root-character/root-charact
     RootCharacterComponentRoutingModule,
     NgxTippyModule,
   ],
-  declarations: [RootCharacterComponent],
+  declarations: [RootCharacterComponent, ListCharacterComponent],
 })
 export class CharacterModule {}

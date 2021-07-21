@@ -14,12 +14,7 @@
         <ion-card-title>Characters</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <!-- TODO: Make dumb component for this list -->
-        <ion-item *ngFor="let item of list">
-          <ion-label>
-            {{ item.get('name') }}
-          </ion-label>
-        </ion-item>
+        <app-list-character [list]="list"></app-list-character>
       </ion-card-content>
     </ion-card>
   </div>
