@@ -6,6 +6,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { StoreModule } from '@ngrx/store';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AgGridModule } from 'ag-grid-angular';
@@ -15,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslateProvider } from './providers/translate/translate.service';
 import { SharedModule } from './shared.module';
+import { EffectsModule } from '@ngrx/effects';
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function httpLoaderFactory(http: HttpClient) {
@@ -44,6 +46,8 @@ export function httpLoaderFactory(http: HttpClient) {
     }),
     AgGridModule.withComponents([]),
     SharedModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -31,6 +31,10 @@
     "@ionic-native/core": "^5.34.0",
     "@ionic/angular": "^5.6.11",
     "@ionic/storage-angular": "^3.0.6",
+    "@ngneat/until-destroy": "^8.1.1",
+    "@ngrx/effects": "^12.2.0",
+    "@ngrx/entity": "^12.2.0",
+    "@ngrx/store": "^12.2.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "ag-grid-angular": "^25.3.0",
@@ -82,6 +86,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~4.2.4"
+    "typescript": "~4.2.4",
+    "eslint-plugin-ngrx": "^1.0.0"
   }
 }

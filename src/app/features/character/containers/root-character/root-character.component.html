@@ -15,9 +15,9 @@
       </ion-card-header>
       <ion-card-content>
         <!-- TODO: Make dumb component for this list -->
-        <ion-item *ngFor="let item of list">
+        <ion-item *ngFor="let item of list$ | async">
           <ion-label>
-            {{ item.get('name') }}
+            {{ item }}
           </ion-label>
         </ion-item>
       </ion-card-content>

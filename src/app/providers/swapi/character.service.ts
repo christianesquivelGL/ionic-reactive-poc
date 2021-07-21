@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse';
+import { Observable, of } from 'rxjs';
 
 import { CONSTANTS } from '../../app.constants';
 
@@ -20,6 +21,14 @@ export class CharacterService {
     const query = new Parse.Query(obj);
 
     return query.find();
+  }
+
+  public getCharactersObservableTest(): Observable<any> {
+    const obj = Parse.Object.extend('SWAPI_Character');
+    const query = new Parse.Query(obj);
+    const res = query.find();
+
+    return of(res);
   }
 
   private parseInitialize() {
