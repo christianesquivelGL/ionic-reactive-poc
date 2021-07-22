@@ -20,10 +20,10 @@ export class AuthPage implements OnInit {
       .automaticLogin()
       .then(() => {
         this.menuCtrl.enable(true);
-        this.router.navigate(['/character']);
+        this.router.navigate(['/home']);
       })
       .catch(async () => {
-        this.router.navigate(['/character']);
+        this.router.navigate(['/login']);
       });
   }
 }

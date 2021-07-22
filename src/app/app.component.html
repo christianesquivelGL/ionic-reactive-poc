@@ -1,11 +1,35 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-content class="bg-profile">
+      <ion-header *ngIf="this.currentUser" class="ion-no-border">
+        <ion-toolbar class="user-info">
+          <ion-card color="tertiary">
+            <ion-item lines="none" class="my-2">
+              <ion-icon slot="start" name="person-circle"></ion-icon>
+              <ion-text>
+                <span
+                  *ngIf="
+                    this.currentUser.get('name') &&
+                    this.currentUser.get('lastName')
+                  "
+                  class="bold"
+                >
+                  {{ this.currentUser.get('name') }}
+                  {{ this.currentUser.get('lastName') }}
+                </span>
+                <br />
+                {{ this.currentUser.get('email') }}
+              </ion-text>
+            </ion-item>
+          </ion-card>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content *ngIf="this.currentUser" class="bg-profile">
         <ion-list>
           <ion-menu-toggle *ngFor="let p of appPages" auto-hide="false">
-            <ion-item [routerLink]="[p.url]" color="primary">
-              <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
+            <ion-item [routerLink]="[p.url]" color="light">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{ p.title }}
               </ion-label>
@@ -13,6 +37,15 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+
+      <ion-item
+        *ngIf="this.currentUser"
+        color="danger"
+        [routerLink]="['login']"
+      >
+        <ion-icon slot="start" name="log-out"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-item>
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>

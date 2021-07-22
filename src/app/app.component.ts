@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../environments/environment';
 import { Pages } from './interfaces/pages';
+import { AuthService } from './providers/auth/auth.service';
 import { TranslateProvider } from './providers/translate/translate.service';
 
 @Component({
@@ -15,6 +16,7 @@ import { TranslateProvider } from './providers/translate/translate.service';
 })
 export class AppComponent {
   public appPages: Array<Pages>;
+  public currentUser: Parse.User;
 
   constructor(
     private platform: Platform,
@@ -22,6 +24,7 @@ export class AppComponent {
     private translateService: TranslateService,
     public router: Router,
     private storage: Storage,
+    private authService: AuthService,
   ) {
     this.appPages = [
       {
@@ -48,6 +51,10 @@ export class AppComponent {
           .subscribe((translations) => {
             this.translate.setTranslations(translations);
           });
+
+        this.authService.cast.subscribe((user) => {
+          this.currentUser = user;
+        });
       })
       .catch(() => {
         this.translateService.setDefaultLang(environment.language);
