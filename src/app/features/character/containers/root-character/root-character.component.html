@@ -14,7 +14,10 @@
         <ion-card-title>Characters</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <app-list-character [list]="list"></app-list-character>
+        <app-list-character
+          *ngIf="list.length"
+          [list]="list"
+        ></app-list-character>
       </ion-card-content>
     </ion-card>
   </div>
