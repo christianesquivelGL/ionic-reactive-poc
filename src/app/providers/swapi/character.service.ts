@@ -19,6 +19,8 @@ export class CharacterService {
   public getCharacters(): Promise<any> {
     const obj = Parse.Object.extend('SWAPI_Character');
     const query = new Parse.Query(obj);
+    query.ascending('name');
+    query.include('homeworld');
 
     return query.find();
   }

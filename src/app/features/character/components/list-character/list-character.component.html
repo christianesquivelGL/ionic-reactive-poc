@@ -1,0 +1,7 @@
+<ion-item *ngFor="let item of list">
+  <ion-label>
+    <h2>{{ item.get('name') }}</h2>
+    <h3>{{ item.get('gender') | titlecase }}</h3>
+    <p>{{ item.get('homeworld').get('name') }}</p>
+  </ion-label>
+</ion-item>

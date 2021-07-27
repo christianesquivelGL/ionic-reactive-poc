@@ -1,8 +1,13 @@
 export const CONSTANTS = {
   production: false,
-  parseAppId: 'YGuPHs1TH2xRII3Ljyh9Yn3Y3YFw4r9RzbDF5O8T',
-  parseJSKey: 'fOIuewAcElU1qDfQQF85BgJ70OFYuDk9rPbJKTMo',
+  parseAppId: '0smc8Z0Y7meBBfPlyQRAuCpeuVhndKk8FUelIywH',
+  parseJSKey: 'fa4YC70zCRmTCmxYWVvkYpRrIh0rzCPvbdV8rIaC',
   parseServerUrl: 'https://parseapi.back4app.com/',
+  ionicComponentConfig: {
+    toast: {
+      duration: 15000,
+    },
+  },
   settings: {
     pageSize: 15,
   },

@@ -18,17 +18,12 @@ export class AuthPage implements OnInit {
   ngOnInit() {
     this.authService
       .automaticLogin()
-      .then((res) => {
-        console.log('Logged in using Automatic Login');
+      .then(() => {
         this.menuCtrl.enable(true);
-        this.router.navigate(['/character']);
+        this.router.navigate(['/home']);
       })
-      .catch(async (err) => {
-        console.warn('Automatic Login failed');
-        try {
-          await this.authService.signOut();
-        } catch (error) {}
-        this.router.navigate(['/character']);
+      .catch(async () => {
+        this.router.navigate(['/login']);
       });
   }
 }

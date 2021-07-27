@@ -1,0 +1,88 @@
+<ion-content class="ion-padding auth-page">
+  <div class="auth-content animate__animated animate__fadeIn">
+    <ion-card class="ion-padding my-4">
+      <ion-card-header>
+        <ion-card-title>{{ 'app.name' | translate }}</ion-card-title>
+        <ion-card-subtitle>{{ 'app.subtitle' | translate }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Login form -->
+        <form
+          [formGroup]="onLoginForm"
+          (ngSubmit)="submit()"
+          (keyup.enter)="onLoginForm.valid ? submit() : false;"
+          class="list-form mt-4"
+        >
+          <ion-item class="ion-no-padding">
+            <ion-label position="floating">
+              <ion-icon name="mail" item-start></ion-icon>
+              {{ 'app.label.email' | translate }}
+            </ion-label>
+            <ion-input
+              required
+              color="secondary"
+              type="email"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+          <div
+            class="text-smaller"
+            *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').invalid"
+          >
+            <ion-text
+              color="danger"
+              *ngIf="onLoginForm.controls.email.errors.required"
+            >
+              {{ 'app.label.requiredfield' | translate }}
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="onLoginForm.controls.email.errors.pattern"
+            >
+              {{ 'app.label.invalidformat' | translate }}
+            </ion-text>
+          </div>
+
+          <ion-item class="ion-no-padding">
+            <ion-label position="floating">
+              <ion-icon name="lock-closed" item-start></ion-icon>
+              {{ 'app.label.password' | translate }}
+            </ion-label>
+            <app-show-hide-password>
+              <ion-input
+                required
+                color="secondary"
+                type="password"
+                formControlName="password"
+              ></ion-input>
+            </app-show-hide-password>
+          </ion-item>
+          <div
+            class="text-smaller"
+            *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').invalid"
+          >
+            <ion-text
+              color="danger"
+              *ngIf="onLoginForm.controls.password.errors.required"
+            >
+              {{ 'app.label.requiredfield' | translate }}
+            </ion-text>
+          </div>
+        </form>
+
+        <ion-button
+          class="ion-margin"
+          size="medium"
+          expand="full"
+          shape="round"
+          (click)="submit()"
+          [disabled]="!onLoginForm.valid"
+          tappable
+        >
+          <ion-icon name="log-in" class="ion-margin-end"></ion-icon>
+          {{ 'app.pages.auth.login' | translate }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

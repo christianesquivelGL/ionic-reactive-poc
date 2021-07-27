@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
+import { ListCharacterComponent } from './components/list-character/list-character.component';
 import { RootCharacterComponentRoutingModule } from './containers/root-character/root-character-routing.module';
 import { RootCharacterComponent } from './containers/root-character/root-character.component';
 import { characterReducer } from './state/character-reducer';
@@ -24,6 +25,6 @@ import { CharacterEffects } from './state/character.effects';
     StoreModule.forFeature('character', characterReducer),
     EffectsModule.forFeature([CharacterEffects]),
   ],
-  declarations: [RootCharacterComponent],
+  declarations: [RootCharacterComponent, ListCharacterComponent],
 })
 export class CharacterModule {}

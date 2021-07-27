@@ -1,3 +1,22 @@
 {
-    "app.name": "SWAPI Playground"
+  "app.name": "SWAPI Playground",
+  "app.subtitle": "A GL Labs experiment",
+
+  "app.button.search": "Search",
+  "app.button.login": "Log In",
+  "app.button.signout": "Sign Out",
+
+  "app.label.accept": "Accept",
+  "app.label.cancel": "Cancel",
+  "app.label.size": "Size",
+  "app.label.goback": "Go Back",
+  "app.label.error": "Error",
+  "app.label.email": "E-Mail",
+  "app.label.password": "Password",
+  "app.label.invalidformat": "Formato inválido",
+  "app.label.requiredfield": "Required field",
+
+  "app.pages.auth.login": "Log In",
+  "app.pages.auth.invaliduser": "Invalid User",
+  "app.pages.auth.retrycredentials": "Verfiy credentials and try again"
 }

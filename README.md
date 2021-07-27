@@ -1,3 +1,6 @@
+# This app is hosted here: https://gl-labs-swapi-playground.web.app/
+*_remember to clear cache_
+
 # Global dependencies
 
 * Node (Tested using v14.17.0)
