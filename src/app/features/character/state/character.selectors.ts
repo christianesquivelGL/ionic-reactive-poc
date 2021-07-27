@@ -4,7 +4,7 @@ import {
   characterFeatureKey,
   CharacterState,
   characterAdapter,
-} from './character-reducer';
+} from './character.reducer';
 
 export const selectCharacterState =
   createFeatureSelector<CharacterState>(characterFeatureKey);

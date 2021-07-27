@@ -10,7 +10,7 @@ import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { ListCharacterComponent } from './components/list-character/list-character.component';
 import { RootCharacterComponentRoutingModule } from './containers/root-character/root-character-routing.module';
 import { RootCharacterComponent } from './containers/root-character/root-character.component';
-import { characterReducer } from './state/character-reducer';
+import { characterReducer } from './state/character.reducer';
 import { CharacterEffects } from './state/character.effects';
 
 @NgModule({

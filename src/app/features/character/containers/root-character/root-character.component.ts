@@ -4,7 +4,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { select, Store } from '@ngrx/store';
 
 import { CharacterService } from '../../../../providers/swapi/character.service';
-import { CharacterState } from '../../state/character-reducer';
+import { CharacterState } from '../../state/character.reducer';
 import * as fromCharacterActions from '../../state/character.actions';
 import * as fromCharacterSelectors from '../../state/character.selectors';
 
