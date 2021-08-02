@@ -1,22 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { Pages } from './interfaces/pages';
 import { AuthService } from './providers/auth/auth.service';
 import { TranslateProvider } from './providers/translate/translate.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   public appPages: Array<Pages>;
   public currentUser: Parse.User;
+  public userSubscription: Subscription;
 
   constructor(
     private platform: Platform,
@@ -37,6 +38,9 @@ export class AppComponent {
 
     this.initializeApp();
   }
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+  }
 
   initializeApp() {
     this.platform
@@ -52,7 +56,7 @@ export class AppComponent {
             this.translate.setTranslations(translations);
           });
 
-        this.authService.cast.subscribe((user) => {
+        this.userSubscription = this.authService.cast.subscribe((user) => {
           this.currentUser = user;
         });
       })

@@ -15,8 +15,8 @@
       </ion-card-header>
       <ion-card-content>
         <app-list-character
-          *ngIf="list.length"
           [list]="list"
+          (addToFavoritesEmitter)="addToFavorites($event)"
         ></app-list-character>
       </ion-card-content>
     </ion-card>
