@@ -30,9 +30,15 @@ export class AppComponent implements OnDestroy {
     this.appPages = [
       {
         title: 'Characters',
-        url: '/character-setup',
+        url: '/character',
         direct: 'root',
         icon: 'person',
+      },
+      {
+        title: 'Favorites',
+        url: '/favorites',
+        direct: 'root',
+        icon: 'star',
       },
     ];
 

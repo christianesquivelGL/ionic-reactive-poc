@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { map } from 'lodash';
-import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/providers/auth/auth.service';
 
 import { FeedbackService } from '../../../../libs/feedback/feedback.service';
+import { AuthService } from '../../../../providers/auth/auth.service';
 import { FavoritesService } from '../../../../providers/favorites/favorites.service';
 import { CharacterService } from '../../../../providers/swapi/character.service';
 import { TranslateProvider } from '../../../../providers/translate/translate.service';

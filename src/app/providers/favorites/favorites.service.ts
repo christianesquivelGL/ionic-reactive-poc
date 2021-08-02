@@ -21,6 +21,8 @@ export class FavoritesService {
     const obj = Parse.Object.extend('Favorites');
     const query = new Parse.Query(obj);
     query.equalTo('user', this.authService.getCurrentUser());
+    query.include('SWAPI_Character');
+    query.include('SWAPI_Character.homeworld');
 
     return query.find();
   }
