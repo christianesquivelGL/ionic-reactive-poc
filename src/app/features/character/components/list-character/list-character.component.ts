@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Character } from '../../models/character.model';
 
 @Component({
   selector: 'app-list-character',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./list-character.component.scss'],
 })
 export class ListCharacterComponent implements OnInit {
-  @Input() list: Parse.Object[];
+  @Input() list: Character[];
   @Output() addToFavoritesEmitter = new EventEmitter<any>();
 
   constructor() {}

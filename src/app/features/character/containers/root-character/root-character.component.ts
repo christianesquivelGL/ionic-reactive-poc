@@ -8,6 +8,7 @@ import { FeedbackService } from '../../../../libs/feedback/feedback.service';
 import { FavoritesService } from '../../../../providers/favorites/favorites.service';
 import { CharacterService } from '../../../../providers/swapi/character.service';
 import { TranslateProvider } from '../../../../providers/translate/translate.service';
+import { Character } from '../../models/character.model';
 
 @Component({
   selector: 'app-root-character',
@@ -15,7 +16,7 @@ import { TranslateProvider } from '../../../../providers/translate/translate.ser
   styleUrls: ['./root-character.component.scss'],
 })
 export class RootCharacterComponent {
-  list: Parse.Object[];
+  list: Character[];
   // list: Observable<Parse.Object[]>;
   favoritesList: Parse.Object[];
   // favoritesList: Observable<Parse.Object[]>;
@@ -63,17 +64,17 @@ export class RootCharacterComponent {
   }
 
   async usingPromise() {
-    this.list = await this.characterService.getCharacters();
+    const raw = await this.characterService.getCharacters();
     this.favoritesList =
       await this.favoritesService.getFavoritesByCurrentUser();
 
-    this.list = map(this.list, (entry) => {
+    this.list = map(raw, (entry: Character) => {
       const matched = this.favoritesList.some(
         (el) =>
           el.get('user').id === this.authService.getCurrentUser().id &&
           el.get('SWAPI_Character').id === entry.id,
       );
-      Object.assign(entry, { isFavorite: matched });
+      entry.isFavorite = matched;
 
       return entry;
     });
