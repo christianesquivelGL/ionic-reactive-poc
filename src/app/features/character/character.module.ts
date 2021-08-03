@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { NgxTippyModule } from 'ngx-tippy-wrapper';
+import { TranslateModule } from '@ngx-translate/core';
 
+import { ListCharacterComponent } from './components/list-character/list-character.component';
 import { RootCharacterComponentRoutingModule } from './containers/root-character/root-character-routing.module';
 import { RootCharacterComponent } from './containers/root-character/root-character.component';
-import { ListCharacterComponent } from './components/list-character/list-character.component';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { ListCharacterComponent } from './components/list-character/list-charact
     RouterModule,
     IonicModule,
     RootCharacterComponentRoutingModule,
-    NgxTippyModule,
+    TranslateModule.forChild(),
   ],
   declarations: [RootCharacterComponent, ListCharacterComponent],
 })

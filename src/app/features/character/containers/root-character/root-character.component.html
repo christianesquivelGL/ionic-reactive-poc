@@ -3,20 +3,24 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Characters</ion-title>
+    <ion-title>
+      {{ 'app.pages.characters.title' | translate }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
-    <ion-card color="light">
+    <ion-card *ngIf="list.length" color="light">
       <ion-card-header>
-        <ion-card-title>Characters</ion-card-title>
+        <ion-card-title>
+          {{ 'app.pages.characters.title' | translate }}
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <app-list-character
           [list]="list"
-          (addToFavoritesEmitter)="addToFavorites($event)"
+          (toggleAddToFavoritesEmitter)="toggleAddToFavorites($event)"
         ></app-list-character>
       </ion-card-content>
     </ion-card>

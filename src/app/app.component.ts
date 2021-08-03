@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { Pages } from './interfaces/pages';
 import { AuthService } from './providers/auth/auth.service';
 import { TranslateProvider } from './providers/translate/translate.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -27,23 +28,9 @@ export class AppComponent implements OnDestroy {
     private storage: Storage,
     private authService: AuthService,
   ) {
-    this.appPages = [
-      {
-        title: 'Characters',
-        url: '/character',
-        direct: 'root',
-        icon: 'person',
-      },
-      {
-        title: 'Favorites',
-        url: '/favorites',
-        direct: 'root',
-        icon: 'star',
-      },
-    ];
-
     this.initializeApp();
   }
+
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }
@@ -74,6 +61,24 @@ export class AppComponent implements OnDestroy {
           .subscribe((translations) => {
             this.translate.setTranslations(translations);
           });
+      })
+      .finally(() => {
+        setTimeout(() => {
+          this.appPages = [
+            {
+              title: this.translate.get('app.pages.characters.title'),
+              url: '/character',
+              direct: 'root',
+              icon: 'person',
+            },
+            {
+              title: this.translate.get('app.pages.favorites.title'),
+              url: '/favorites',
+              direct: 'root',
+              icon: 'star',
+            },
+          ];
+        }, 0);
       });
   }
 }

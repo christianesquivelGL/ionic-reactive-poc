@@ -8,13 +8,13 @@ import { Character } from '../../models/character.model';
 })
 export class ListCharacterComponent implements OnInit {
   @Input() list: Character[];
-  @Output() addToFavoritesEmitter = new EventEmitter<any>();
+  @Output() toggleAddToFavoritesEmitter = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  addToFavorites(entry: Parse.Object) {
-    this.addToFavoritesEmitter.emit(entry);
+  toggleAddToFavorites(entry: Parse.Object) {
+    this.toggleAddToFavoritesEmitter.emit(entry);
   }
 }

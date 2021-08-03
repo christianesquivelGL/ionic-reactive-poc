@@ -15,9 +15,9 @@ import { Character } from '../../models/character.model';
   styleUrls: ['./root-character.component.scss'],
 })
 export class RootCharacterComponent {
-  list: Character[];
+  list: Character[] = [];
   // list: Observable<Parse.Object[]>;
-  favoritesList: Parse.Object[];
+  favoritesList: Parse.Object[] = [];
   // favoritesList: Observable<Parse.Object[]>;
 
   constructor(
@@ -30,16 +30,8 @@ export class RootCharacterComponent {
   ) {}
 
   async ionViewWillEnter() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Fetching Characters...',
-      spinner: 'bubbles',
-    });
-    await loading.present();
-
     this.usingPromise();
     // this.usingObservable();
-
-    loading.dismiss();
   }
 
   async usingObservable() {
@@ -63,6 +55,12 @@ export class RootCharacterComponent {
   }
 
   async usingPromise() {
+    const loading = await this.loadingCtrl.create({
+      message: this.translateProvider.get('app.label.fetching'),
+      spinner: 'bubbles',
+    });
+    await loading.present();
+
     const raw = await this.characterService.getCharacters();
     this.favoritesList =
       await this.favoritesService.getFavoritesByCurrentUser();
@@ -77,9 +75,11 @@ export class RootCharacterComponent {
 
       return entry;
     });
+
+    loading.dismiss();
   }
 
-  async addToFavorites(entry) {
+  async toggleAddToFavorites(entry: Character) {
     const res = await this.favoritesService.toggleAddToFavorites(entry);
 
     if (res) {

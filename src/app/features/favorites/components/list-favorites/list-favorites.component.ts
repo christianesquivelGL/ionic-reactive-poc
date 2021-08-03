@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-list-favorites',
@@ -7,4 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ListFavoritesComponent {
   @Input() list: Parse.Object[];
+  @Output() toggleAddToFavoritesEmitter = new EventEmitter<any>();
+
+  toggleAddToFavorites(entry: Parse.Object) {
+    this.toggleAddToFavoritesEmitter.emit(entry);
+  }
 }

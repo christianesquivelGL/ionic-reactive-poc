@@ -5,4 +5,7 @@
     <h3>{{ item.get('SWAPI_Character').get('gender') | titlecase }}</h3>
     <p>{{ item.get('SWAPI_Character').get('homeworld').get('name') }}</p>
   </ion-label>
+  <ion-button color="danger" (click)="toggleAddToFavorites(item)">
+    <ion-icon name="trash"></ion-icon>
+  </ion-button>
 </ion-item>

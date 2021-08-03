@@ -6,7 +6,12 @@
     <p>{{ item.get('homeworld').get('name') }}</p>
   </ion-label>
 
-  <ion-button (click)="addToFavorites(item)">
-    <ion-icon name="{{ item?.isFavorite ? 'star' : 'star-outline' }}"></ion-icon>
+  <ion-button
+    color="{{ item?.isFavorite ? 'success' : 'primary' }}"
+    (click)="toggleAddToFavorites(item)"
+  >
+    <ion-icon
+      name="{{ item?.isFavorite ? 'star' : 'star-outline' }}"
+    ></ion-icon>
   </ion-button>
 </ion-item>
