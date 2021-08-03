@@ -78,7 +78,7 @@ export class AppComponent implements OnDestroy {
               icon: 'star',
             },
           ];
-        }, 0);
+        }, 600);
       });
   }
 }
