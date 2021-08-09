@@ -8,7 +8,7 @@ import { Character } from '../../models/character.model';
 })
 export class ListCharacterComponent implements OnInit {
   @Input() list: Character[];
-  @Output() toggleAddToFavoritesEmitter = new EventEmitter<Parse.Object>();
+  @Output() toggleAddToFavoritesEmitter = new EventEmitter<any>();
 
   constructor() {}
 
