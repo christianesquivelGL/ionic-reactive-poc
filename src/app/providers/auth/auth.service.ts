@@ -10,6 +10,7 @@ import { CONSTANTS } from '../../app.constants';
   providedIn: 'root',
 })
 export class AuthService {
+  // NOTE: Observable of current user
   public cast: Observable<Parse.User>;
 
   private parseAppId: string = CONSTANTS.parseAppId;
@@ -43,6 +44,7 @@ export class AuthService {
                 }
                 const userToken = loggedInUser.getSessionToken();
                 this.storage.set('userToken', userToken);
+                // NOTE: Setting current user to the observable stream
                 this.currentUser.next(this.getCurrentUser());
 
                 resolve(loggedInUser);
@@ -69,6 +71,7 @@ export class AuthService {
                 if (user.get('blocked')) {
                   reject('User is currently blocked');
                 } else {
+                  // NOTE: Setting current user to the observable stream
                   this.currentUser.next(this.getCurrentUser());
 
                   resolve(user);
@@ -93,6 +96,7 @@ export class AuthService {
         .clear()
         .then(() => Parse.User.logOut())
         .then((res) => {
+          // NOTE: Setting the observable stream
           this.currentUser.next(null);
 
           resolve(res);

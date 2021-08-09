@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
@@ -20,5 +20,6 @@ import { RootFavoritesComponent } from './containers/root-favorites/root-favorit
     TranslateModule.forChild(),
   ],
   declarations: [RootFavoritesComponent, ListFavoritesComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FavoritesModule {}

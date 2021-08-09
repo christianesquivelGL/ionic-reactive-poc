@@ -25,6 +25,7 @@ export class CharacterService {
     return query.find();
   }
 
+  // NOTE: Managing service result as observable
   public async getCharactersObservable(): Promise<Observable<Parse.Object[]>> {
     const obj = Parse.Object.extend('SWAPI_Character');
     const query = new Parse.Query(obj);

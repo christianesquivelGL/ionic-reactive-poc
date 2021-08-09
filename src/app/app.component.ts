@@ -32,13 +32,32 @@ export class AppComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
+    // NOTE: Observable best practice
     this.userSubscription.unsubscribe();
+  }
+
+  setMenu() {
+    this.appPages = [
+      {
+        title: this.translate.get('app.pages.characters.title'),
+        url: '/character',
+        direct: 'root',
+        icon: 'person',
+      },
+      {
+        title: this.translate.get('app.pages.favorites.title'),
+        url: '/favorites',
+        direct: 'root',
+        icon: 'star',
+      },
+    ];
   }
 
   initializeApp() {
     this.platform
       .ready()
       .then(async () => {
+        // NOTE: Annonymous async function
         await this.storage.create();
 
         this.translateService.setDefaultLang(environment.language);
@@ -47,6 +66,7 @@ export class AppComponent implements OnDestroy {
           .getTranslation(environment.language)
           .subscribe((translations) => {
             this.translate.setTranslations(translations);
+            this.setMenu();
           });
 
         this.userSubscription = this.authService.cast.subscribe((user) => {
@@ -60,25 +80,8 @@ export class AppComponent implements OnDestroy {
           .getTranslation(environment.language)
           .subscribe((translations) => {
             this.translate.setTranslations(translations);
+            this.setMenu();
           });
-      })
-      .finally(() => {
-        setTimeout(() => {
-          this.appPages = [
-            {
-              title: this.translate.get('app.pages.characters.title'),
-              url: '/character',
-              direct: 'root',
-              icon: 'person',
-            },
-            {
-              title: this.translate.get('app.pages.favorites.title'),
-              url: '/favorites',
-              direct: 'root',
-              icon: 'star',
-            },
-          ];
-        }, 600);
       });
   }
 }
