@@ -108,6 +108,15 @@ export class AuthService {
     });
   }
 
+  public updateUserData(data): Promise<any> {
+    const user = this.getCurrentUser();
+    user.set('name', data.name);
+    user.set('lastName', data.lastName);
+    user.set('email', data.email);
+
+    return user.save();
+  }
+
   private parseInitialize() {
     Parse.initialize(this.parseAppId, this.parseJSKey);
     (Parse as any).serverURL = this.parseServerUrl;

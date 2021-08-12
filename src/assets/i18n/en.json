@@ -9,6 +9,10 @@
   "app.label.accept": "Accept",
   "app.label.cancel": "Cancel",
   "app.label.size": "Size",
+  "app.label.name": "Name",
+  "app.label.lastname": "Last Name",
+  "app.label.save": "Save",
+  "app.label.profile": "Edit User Profile",
   "app.label.goback": "Go Back",
   "app.label.error": "Error",
   "app.label.email": "E-Mail",
@@ -20,6 +24,7 @@
   "app.pages.auth.login": "Log In",
   "app.pages.auth.invaliduser": "Invalid User",
   "app.pages.auth.retrycredentials": "Verfiy credentials and try again",
+  "app.pages.auth.update.success": "User data has been updated!",
 
   "app.pages.favorites.title": "Favorites",
   "app.pages.favorites.noresults": "No favorites yet!",

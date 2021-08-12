@@ -23,7 +23,7 @@ export class FeedbackService {
 
   async showSimpleToast(message: string, color?: string) {
     const toast = await this.toastCtrl.create({
-      position: 'top',
+      position: 'bottom',
       duration: CONSTANTS.ionicComponentConfig.toast.duration,
       message,
       color: color || 'success',
