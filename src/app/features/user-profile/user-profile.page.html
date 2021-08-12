@@ -41,10 +41,7 @@
             </ion-label>
             <ion-input formControlName="email" type="email"></ion-input>
           </ion-item>
-          <div
-            class="text-smaller"
-            *ngIf="form.get('email').invalid"
-          >
+          <div class="text-smaller" *ngIf="form.get('email').invalid">
             <ion-text
               color="danger"
               *ngIf="form.controls.email.errors.required"

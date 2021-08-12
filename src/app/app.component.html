@@ -3,7 +3,12 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-header *ngIf="this.currentUser" class="ion-no-border">
         <ion-toolbar class="user-info">
-          <ion-card [routerLink]="['user-profile']" color="tertiary">
+          <ion-card
+            [routerLink]="['user-profile']"
+            ngxTippy
+            tippyName="editUserTippy"
+            color="tertiary"
+          >
             <ion-item lines="none" class="my-2">
               <ion-icon slot="start" name="person-circle"></ion-icon>
               <ion-text>

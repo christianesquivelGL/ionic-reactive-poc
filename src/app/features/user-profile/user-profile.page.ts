@@ -5,9 +5,9 @@ import {
   MenuController,
   ToastController,
 } from '@ionic/angular';
-import { FeedbackService } from '../../libs/feedback/feedback.service';
 
 import { CONSTANTS } from '../../app.constants';
+import { FeedbackService } from '../../libs/feedback/feedback.service';
 import { AuthService } from '../../providers/auth/auth.service';
 import { TranslateProvider } from '../../providers/translate/translate.service';
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxTippyService } from 'ngx-tippy-wrapper';
 import { Subscription } from 'rxjs';
 
 import { environment } from '../environments/environment';
@@ -27,6 +28,7 @@ export class AppComponent implements OnDestroy {
     public router: Router,
     private storage: Storage,
     private authService: AuthService,
+    private tippyService: NgxTippyService,
   ) {
     this.initializeApp();
   }
@@ -51,6 +53,10 @@ export class AppComponent implements OnDestroy {
         icon: 'star',
       },
     ];
+    this.tippyService.setContent(
+      'editUserTippy',
+      this.translate.get('app.label.profile'),
+    );
   }
 
   initializeApp() {
