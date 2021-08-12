@@ -52,6 +52,12 @@ export class AppComponent implements OnDestroy {
         direct: 'root',
         icon: 'star',
       },
+      {
+        title: 'Observables',
+        url: '/observable-playground',
+        direct: 'root',
+        icon: 'globe',
+      },
     ];
     this.tippyService.setContent(
       'editUserTippy',

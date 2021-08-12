@@ -43,6 +43,13 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'observable-playground',
+    loadChildren: () =>
+      import(
+        './features/observable-playground/observable-playground.module'
+      ).then((m) => m.ObservablePlaygroundPageModule),
+  },
 ];
 
 @NgModule({
