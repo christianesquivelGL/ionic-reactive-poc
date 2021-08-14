@@ -16,17 +16,17 @@
 
     <ion-card class="ion-padding">
       <code> from() </code><br />
-      {{ this.observable | async | json }}
+      {{ this.favorites$| async | json }}
     </ion-card>
 
     <ion-card class="ion-padding">
       <code> pipe(first()) </code><br />
-      {{ this.usingFirst | async | json }}
+      {{ this.usingFirst$ | async | json }}
     </ion-card>
 
     <ion-card class="ion-padding">
       <code> pipe(take(3)) </code><br />
-      {{ this.usingTake | async | json }}
+      {{ this.usingTake$ | async | json }}
     </ion-card>
   </div>
 </ion-content>
