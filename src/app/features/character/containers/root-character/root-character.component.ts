@@ -18,6 +18,7 @@ export class RootCharacterComponent {
   list: Character[] = [];
   // list: Observable<Parse.Object[]>;
   favoritesList: Parse.Object[] = [];
+  searchCriteria = '';
   // favoritesList: Observable<Parse.Object[]>;
 
   constructor(
@@ -30,8 +31,17 @@ export class RootCharacterComponent {
   ) {}
 
   async ionViewWillEnter() {
-    this.usingPromise();
-    // this.usingObservable();
+    const loading = await this.loadingCtrl.create({
+      message: this.translateProvider.get('app.label.fetching'),
+      spinner: 'bubbles',
+    });
+    await loading.present();
+
+    this.favoritesList =
+      await this.favoritesService.getFavoritesByCurrentUser();
+    await this.search();
+
+    loading.dismiss();
   }
 
   async usingObservable() {
@@ -54,29 +64,24 @@ export class RootCharacterComponent {
     //   .subscribe(console.log);
   }
 
-  async usingPromise() {
-    const loading = await this.loadingCtrl.create({
-      message: this.translateProvider.get('app.label.fetching'),
-      spinner: 'bubbles',
-    });
-    await loading.present();
-
-    const raw = await this.characterService.getCharacters();
-    this.favoritesList =
-      await this.favoritesService.getFavoritesByCurrentUser();
-
-    this.list = map(raw, (entry: Character) => {
-      const matched = this.favoritesList.some(
-        (el) =>
-          el.get('user').id === this.authService.getCurrentUser().id &&
-          el.get('SWAPI_Character').id === entry.id,
+  async search() {
+    return new Promise(async (resolve, reject) => {
+      const raw = await this.characterService.getCharactersBySearchCriteria(
+        this.searchCriteria,
       );
-      entry.isFavorite = matched;
 
-      return entry;
+      this.list = map(raw, (entry: Character) => {
+        const matched = this.favoritesList.some(
+          (el) =>
+            el.get('user').id === this.authService.getCurrentUser().id &&
+            el.get('SWAPI_Character').id === entry.id,
+        );
+        entry.isFavorite = matched;
+
+        return entry;
+      });
+      resolve(this.list);
     });
-
-    loading.dismiss();
   }
 
   async toggleAddToFavorites(entry: Character) {

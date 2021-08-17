@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isEmpty } from 'lodash';
 import * as Parse from 'parse';
 import { Observable, of } from 'rxjs';
 
@@ -19,6 +20,34 @@ export class CharacterService {
   public async getCharacters(): Promise<Parse.Object[]> {
     const obj = Parse.Object.extend('SWAPI_Character');
     const query = new Parse.Query(obj);
+    query.ascending('name');
+    query.include('homeworld');
+
+    return query.find();
+  }
+
+  public async getCharactersBySearchCriteria(
+    searchCriteria,
+  ): Promise<Parse.Object[]> {
+    const obj = Parse.Object.extend('SWAPI_Character');
+    let query = new Parse.Query(obj);
+
+    if (!isEmpty(searchCriteria)) {
+      const name = new Parse.Query(obj);
+      name.matches('name', searchCriteria, 'i');
+
+      // const eyeColor = new Parse.Query(obj);
+      // name.matches('eyeColor', searchCriteria, 'i');
+
+      const planet = Parse.Object.extend('SWAPI_Planet');
+      const planetQuery = new Parse.Query(planet);
+      planetQuery.matches('name', searchCriteria, 'i');
+      const characterByHomeworld = new Parse.Query(obj);
+      characterByHomeworld.matchesQuery('homeworld', planetQuery);
+
+      query = Parse.Query.or(name, characterByHomeworld);
+    }
+
     query.ascending('name');
     query.include('homeworld');
 

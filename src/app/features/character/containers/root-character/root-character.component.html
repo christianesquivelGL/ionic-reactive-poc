@@ -11,6 +11,16 @@
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
+    <ion-searchbar
+      slot="fixed"
+      color="medium"
+      placeholder="{{ 'app.button.search' | translate }}"
+      inputmode="text"
+      [(ngModel)]="searchCriteria"
+      (ionChange)="search()"
+      (debounce)="(500)"
+    ></ion-searchbar>
+
     <ion-card *ngIf="list.length" color="light">
       <ion-card-header>
         <ion-card-title>
