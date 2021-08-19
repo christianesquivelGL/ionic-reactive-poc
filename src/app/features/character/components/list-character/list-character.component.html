@@ -1,6 +1,10 @@
 <ion-item *ngFor="let item of list">
+  <ion-avatar slot="start">
+    <img [src]="item.img?.images.original.url" />
+  </ion-avatar>
+
   <ion-label>
-    <p class="text-smaller">id: {{ item.id }}</p>
+    <!-- <p class="text-smaller">id: {{ item.id }}</p> -->
     <h2>{{ item.get('name') }}</h2>
     <h3>{{ item.get('gender') | titlecase }}</h3>
     <p>{{ item.get('homeworld').get('name') }}</p>

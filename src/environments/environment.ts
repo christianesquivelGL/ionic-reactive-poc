@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   language: 'en',
+  giphy: {
+    apiKey: 'PThtYIlJcYWclGK89wKGqwadWmOOLNIv',
+  },
 };
 
 /*

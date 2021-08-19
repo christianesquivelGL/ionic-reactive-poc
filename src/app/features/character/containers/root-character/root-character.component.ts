@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonContent, LoadingController } from '@ionic/angular';
 import { each, isEmpty, map } from 'lodash';
+import { GiphyService } from 'src/app/providers/giphy/giphy.service';
 
 import { CONSTANTS } from '../../../../app.constants';
 import { FeedbackService } from '../../../../libs/feedback/feedback.service';
@@ -38,6 +39,7 @@ export class RootCharacterComponent {
     private feedbackService: FeedbackService,
     private translateProvider: TranslateProvider,
     private authService: AuthService,
+    private gifyService: GiphyService,
   ) {}
 
   async ionViewWillEnter() {
@@ -109,6 +111,10 @@ export class RootCharacterComponent {
         el.get('SWAPI_Character').id === entry.id,
     );
     entry.isFavorite = matched;
+    this.gifyService.getGifsByKeyword(entry.get('name')).subscribe((result) => {
+      // eslint-disable-next-line @typescript-eslint/dot-notation
+      entry.img = result['data'][0];
+    });
 
     return entry;
   }
