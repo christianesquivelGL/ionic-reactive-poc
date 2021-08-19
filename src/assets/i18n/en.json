@@ -20,6 +20,7 @@
   "app.label.invalidformat": "Invalid format",
   "app.label.requiredfield": "Required field",
   "app.label.fetching": "Fetching...",
+  "app.label.noresults": "No results found for",
 
   "app.pages.auth.login": "Log In",
   "app.pages.auth.invaliduser": "Invalid User",

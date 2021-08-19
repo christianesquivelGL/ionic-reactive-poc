@@ -18,19 +18,38 @@
       inputmode="text"
       [(ngModel)]="searchCriteria"
       (ionChange)="search()"
+      (ionClear)="clearSearchBar()"
       (debounce)="(500)"
     ></ion-searchbar>
 
-    <ion-card *ngIf="list.length" color="light">
-      <ion-card-header>
-        <ion-card-title>
-          {{ 'app.pages.characters.title' | translate }}
-        </ion-card-title>
-      </ion-card-header>
+    <ion-refresher
+      slot="fixed"
+      (ionRefresh)="this.doRefresh($event)"
+      pullFactor="0.8"
+      pullMin="60"
+      pullMax="120"
+    >
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-spinner
+      *ngIf="loading && this.searchCriteria.length > 0"
+      class="centerSpinner"
+    ></ion-spinner>
+
+    <ion-item lines="none" *ngIf="this.noResults && !loading">
+      <p>
+        {{ 'app.label.noresults' | translate }} '{{ this.searchCriteria }}'.
+      </p>
+    </ion-item>
+
+    <ion-card *ngIf="list.length && !loading" color="light">
       <ion-card-content>
         <app-list-character
           [list]="list"
+          [lastPage]="lastPage"
           (toggleAddToFavoritesEmitter)="toggleAddToFavorites($event)"
+          (loadMoreEmitter)="loadMore()"
         ></app-list-character>
       </ion-card-content>
     </ion-card>

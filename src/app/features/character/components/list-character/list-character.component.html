@@ -15,3 +15,11 @@
     ></ion-icon>
   </ion-button>
 </ion-item>
+
+<ion-infinite-scroll
+  *ngIf="!this.lastPage"
+  threshold="400px"
+  (ionInfinite)="loadMore()"
+>
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>

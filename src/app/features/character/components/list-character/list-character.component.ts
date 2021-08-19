@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
+
 import { Character } from '../../models/character.model';
 
 @Component({
@@ -7,8 +16,13 @@ import { Character } from '../../models/character.model';
   styleUrls: ['./list-character.component.scss'],
 })
 export class ListCharacterComponent implements OnInit {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+
   @Input() list: Character[];
+  @Input() lastPage: boolean;
+
   @Output() toggleAddToFavoritesEmitter = new EventEmitter<any>();
+  @Output() loadMoreEmitter = new EventEmitter<any>();
 
   constructor() {}
 
@@ -20,5 +34,13 @@ export class ListCharacterComponent implements OnInit {
     // I could manage this entry as:
     // entry as Character if I need a specific property from the child.
     this.toggleAddToFavoritesEmitter.emit(entry);
+  }
+
+  loadMore() {
+    this.loadMoreEmitter.emit();
+  }
+
+  completeInfiniteScroll() {
+    this.infiniteScroll.complete();
   }
 }

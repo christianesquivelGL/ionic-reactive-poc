@@ -27,7 +27,9 @@ export class CharacterService {
   }
 
   public async getCharactersBySearchCriteria(
-    searchCriteria,
+    page: number,
+    pageSize: number,
+    searchCriteria: any,
   ): Promise<Parse.Object[]> {
     const obj = Parse.Object.extend('SWAPI_Character');
     let query = new Parse.Query(obj);
@@ -50,6 +52,11 @@ export class CharacterService {
 
     query.ascending('name');
     query.include('homeworld');
+
+    if (page > 0) {
+      query.skip(page * pageSize);
+    }
+    query.limit(pageSize);
 
     return query.find();
   }
