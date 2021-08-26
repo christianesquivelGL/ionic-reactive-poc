@@ -17,8 +17,8 @@ export class FavoritesService {
     this.parseInitialize();
   }
 
-  public getFavoritesByCurrentUser(): Promise<Parse.Object[]> {
-    const obj = Parse.Object.extend('Favorites');
+  public getFavoriteCharactersByCurrentUser(): Promise<Parse.Object[]> {
+    const obj = Parse.Object.extend('FavoriteCharacters');
     const query = new Parse.Query(obj);
     query.equalTo('user', this.authService.getCurrentUser());
     query.include('SWAPI_Character');
@@ -27,18 +27,8 @@ export class FavoritesService {
     return query.find();
   }
 
-  public async getFavoritesByCurrentUserObservable(): Promise<
-    Observable<Parse.Object[]>
-  > {
-    const obj = Parse.Object.extend('Favorites');
-    const query = new Parse.Query(obj);
-    query.equalTo('user', this.authService.getCurrentUser());
-
-    return of(await query.find());
-  }
-
-  public async toggleAddToFavorites(entry: Parse.Object<Parse.Attributes>) {
-    const obj = Parse.Object.extend('Favorites');
+  public async toggleAddToFavoriteCharacters(entry: Parse.Object<Parse.Attributes>) {
+    const obj = Parse.Object.extend('FavoriteCharacters');
     const row = new obj();
     row.set('user', this.authService.getCurrentUser());
     row.set('SWAPI_Character', entry);

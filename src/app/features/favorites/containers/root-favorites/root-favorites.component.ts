@@ -29,13 +29,13 @@ export class RootFavoritesComponent {
     this.loading = true;
     await loading.present();
 
-    this.list = await this.favoritesService.getFavoritesByCurrentUser();
+    this.list = await this.favoritesService.getFavoriteCharactersByCurrentUser();
     loading.dismiss();
     this.loading = false;
   }
 
   async toggleAddToFavorites(entry: Parse.Object) {
-    const res = await this.favoritesService.toggleAddToFavorites(
+    const res = await this.favoritesService.toggleAddToFavoriteCharacters(
       entry.get('SWAPI_Character'),
     );
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
-import { from, Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { filter, first, mapTo, take, takeLast } from 'rxjs/operators';
 import { AuthService } from 'src/app/providers/auth/auth.service';
 
@@ -16,10 +16,16 @@ export class ObservablePlaygroundPage implements OnInit {
   usingTake$: Observable<any>;
   usingTakeLast$: Observable<any>;
   usingFilter$: Observable<any>;
+  headerData: string;
 
   constructor(private authService: AuthService) {}
 
   async ngOnInit() {
+    // NOTE: Use 'of' operator if data on stream is an object, otherwise use 'from' if its an array of values
+    of(await this.fetchMiscValue()).subscribe((r) => {
+      this.headerData = r.get('value');
+    });
+
     const rawFavorites = await this.fetchFavorites();
     console.log('🚀 ~ rawFavorites data from parse', rawFavorites);
     this.favorites$ = from(rawFavorites);
@@ -56,8 +62,16 @@ export class ObservablePlaygroundPage implements OnInit {
     });
   }
 
+  fetchMiscValue() {
+    const obj = Parse.Object.extend('Misc');
+    const query = new Parse.Query(obj);
+    query.equalTo('key', 'sample_html');
+
+    return query.first();
+  }
+
   fetchFavorites() {
-    const obj = Parse.Object.extend('Favorites');
+    const obj = Parse.Object.extend('FavoriteCharacters');
     const query = new Parse.Query(obj);
     query.equalTo('user', this.authService.getCurrentUser());
     query.include('SWAPI_Character');

@@ -49,7 +49,7 @@ export class RootCharacterComponent {
     });
     await loading.present();
     this.favoritesList =
-      await this.favoritesService.getFavoritesByCurrentUser();
+      await this.favoritesService.getFavoriteCharactersByCurrentUser();
     loading.dismiss();
 
     this.resetPagination();
@@ -152,7 +152,9 @@ export class RootCharacterComponent {
   }
 
   async toggleAddToFavorites(entry: Character) {
-    const res = await this.favoritesService.toggleAddToFavorites(entry);
+    const res = await this.favoritesService.toggleAddToFavoriteCharacters(
+      entry,
+    );
 
     if (res) {
       entry.isFavorite = !entry.isFavorite;
