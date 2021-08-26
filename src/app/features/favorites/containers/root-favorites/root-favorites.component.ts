@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { map } from 'lodash';
+import { GiphyService } from 'src/app/providers/giphy/giphy.service';
 
 import { FeedbackService } from '../../../../libs/feedback/feedback.service';
 import { FavoritesService } from '../../../../providers/favorites/favorites.service';
@@ -11,7 +13,7 @@ import { TranslateProvider } from '../../../../providers/translate/translate.ser
   styleUrls: ['./root-favorites.component.scss'],
 })
 export class RootFavoritesComponent {
-  list: Parse.Object[] = [];
+  listCharacters: Parse.Object[] = [];
   loading: boolean;
 
   constructor(
@@ -19,6 +21,7 @@ export class RootFavoritesComponent {
     private favoritesService: FavoritesService,
     private feedbackService: FeedbackService,
     private translateProvider: TranslateProvider,
+    private gifyService: GiphyService,
   ) {}
 
   async ionViewWillEnter() {
@@ -29,9 +32,25 @@ export class RootFavoritesComponent {
     this.loading = true;
     await loading.present();
 
-    this.list = await this.favoritesService.getFavoriteCharactersByCurrentUser();
-    loading.dismiss();
-    this.loading = false;
+    const resCharacters =
+      await this.favoritesService.getFavoriteCharactersByCurrentUser();
+
+      this.listCharacters = map(resCharacters, (entry) =>
+      this.formatCharacter(entry),
+      );
+      loading.dismiss();
+      this.loading = false;
+  }
+
+  formatCharacter(entry) {
+    this.gifyService
+      .getGifsByKeyword(entry.get('SWAPI_Character').get('name'))
+      .subscribe((result) => {
+        // eslint-disable-next-line @typescript-eslint/dot-notation
+        entry.attributes.SWAPI_Character.img = result['data'][0];
+      });
+
+    return entry;
   }
 
   async toggleAddToFavorites(entry: Parse.Object) {

@@ -11,18 +11,16 @@
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
-    <ion-card *ngIf="!list && !loading" color="light" class="ion-padding">
+    <ion-card *ngIf="!listCharacters && !loading" color="light" class="ion-padding">
       {{ 'app.pages.favorites.noresults' | translate }}
     </ion-card>
-    <ion-card *ngIf="list.length" color="light">
-      <ion-card-header>
-        <ion-card-title>
-          {{ 'app.pages.favorites.title' | translate }}
-        </ion-card-title>
-      </ion-card-header>
+    <ion-title>
+      {{ 'app.pages.characters.title' | translate }}
+    </ion-title>
+    <ion-card *ngIf="listCharacters.length" color="light">
       <ion-card-content>
         <app-list-favorites
-          [list]="list"
+          [list]="listCharacters"
           (toggleAddToFavoritesEmitter)="toggleAddToFavorites($event)"
         ></app-list-favorites>
       </ion-card-content>
