@@ -36,6 +36,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'planets',
+    loadChildren: () =>
+      import('./features/planets/planets.module').then(
+        (m) => m.PlanetsModule,
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'user-profile',
     loadChildren: () =>
       import('./features/user-profile/user-profile.module').then(

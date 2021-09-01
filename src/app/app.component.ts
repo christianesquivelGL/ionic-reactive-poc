@@ -53,6 +53,12 @@ export class AppComponent implements OnDestroy {
         icon: 'star',
       },
       {
+        title: this.translate.get('app.pages.planets.title'),
+        url: '/planets',
+        direct: 'root',
+        icon: 'planet',
+      },
+      {
         title: 'Observables',
         url: '/observable-playground',
         direct: 'root',

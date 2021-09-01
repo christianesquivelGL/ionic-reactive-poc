@@ -32,5 +32,7 @@
 
   "app.pages.characters.title": "Characters",
   "app.pages.characters.favorites.added": "Added to favorites",
-  "app.pages.characters.favorites.removed": "Removed from favorites"
+  "app.pages.characters.favorites.removed": "Removed from favorites",
+
+  "app.pages.planets.title": "Planets"
 }
