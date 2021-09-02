@@ -6,6 +6,7 @@ import { FeedbackService } from '../../../../libs/feedback/feedback.service';
 import { GiphyService } from '../../../../providers/giphy/giphy.service';
 import { PlanetsService } from '../../../../providers/swapi/planets.service';
 import { TranslateProvider } from '../../../../providers/translate/translate.service';
+import { Planet } from '../../models/planet.model';
 
 @Component({
   selector: 'app-root-planets',
@@ -13,7 +14,7 @@ import { TranslateProvider } from '../../../../providers/translate/translate.ser
   styleUrls: ['./root-planets.component.scss'],
 })
 export class RootPlanetsComponent {
-  listCharacters: Parse.Object[] = [];
+  list: Planet[] = [];
   loading: boolean;
 
   constructor(
@@ -32,23 +33,17 @@ export class RootPlanetsComponent {
     this.loading = true;
     await loading.present();
 
-    const resCharacters =
-      await this.planetsService.getPlanets();
-
-    // this.listCharacters = map(resCharacters, (entry) =>
-    //   this.formatCharacter(entry),
-    // );
+    const res = await this.planetsService.getPlanets();
+    this.list = map(res, (entry: Planet) => this.addImageProperty(entry));
     loading.dismiss();
     this.loading = false;
   }
 
-  addImageProperty(entry) {
-    this.gifyService
-      .getGifsByKeyword(entry.get('SWAPI_Character').get('name'))
-      .subscribe((result) => {
-        // eslint-disable-next-line @typescript-eslint/dot-notation
-        entry.attributes.SWAPI_Character.img = result['data'][0];
-      });
+  addImageProperty(entry: Planet) {
+    this.gifyService.getGifsByKeyword(entry.get('name')).subscribe((result) => {
+      // eslint-disable-next-line @typescript-eslint/dot-notation
+      entry.img = result['data'][0];
+    });
 
     return entry;
   }
@@ -57,7 +52,6 @@ export class RootPlanetsComponent {
     // const res = await this.planetsService.toggleAddToFavoritePlanets(
     //   entry.get('SWAPI_Character'),
     // );
-
     // if (res) {
     //   this.feedbackService.presentSimpleAlert(
     //     this.translateProvider.get(
@@ -67,7 +61,6 @@ export class RootPlanetsComponent {
     //     ),
     //   );
     // }
-
     // this.ionViewWillEnter();
   }
 }

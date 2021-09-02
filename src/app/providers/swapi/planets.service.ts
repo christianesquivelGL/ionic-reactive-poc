@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { isEmpty } from 'lodash';
 import * as Parse from 'parse';
-import { Observable, of } from 'rxjs';
 
 import { CONSTANTS } from '../../app.constants';
 
@@ -18,11 +16,7 @@ export class PlanetsService {
   }
 
   public async getPlanets(): Promise<Parse.Object[]> {
-    const obj = Parse.Object.extend('SWAPI_Planets');
-    const query = new Parse.Query(obj);
-    query.ascending('name');
-
-    return query.find();
+    return Parse.Cloud.run('v1_getPlanets');
   }
 
   private parseInitialize() {
