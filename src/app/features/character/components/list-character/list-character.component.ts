@@ -44,9 +44,4 @@ export class ListCharacterComponent implements OnInit {
   completeInfiniteScroll() {
     this.infiniteScroll.complete();
   }
-
-  async mapGifyToCharacters() {
-    const res = await this.characterService.mapGifyToCharacters();
-    console.log(res);
-  }
 }
