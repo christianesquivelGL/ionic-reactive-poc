@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { CharacterService } from 'src/app/providers/swapi/character.service';
 
 import { Character } from '../../models/character.model';
 
@@ -24,7 +25,7 @@ export class ListCharacterComponent implements OnInit {
   @Output() toggleAddToFavoritesEmitter = new EventEmitter<any>();
   @Output() loadMoreEmitter = new EventEmitter<any>();
 
-  constructor() {}
+  constructor(public characterService: CharacterService) {}
 
   ngOnInit(): void {}
 
@@ -42,5 +43,10 @@ export class ListCharacterComponent implements OnInit {
 
   completeInfiniteScroll() {
     this.infiniteScroll.complete();
+  }
+
+  async mapGifyToCharacters() {
+    const res = await this.characterService.mapGifyToCharacters();
+    console.log(res);
   }
 }

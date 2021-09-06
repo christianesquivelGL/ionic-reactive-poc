@@ -39,7 +39,7 @@ export class RootCharacterComponent {
     private feedbackService: FeedbackService,
     private translateProvider: TranslateProvider,
     private authService: AuthService,
-    private gifyService: GiphyService,
+    private giphyService: GiphyService,
   ) {}
 
   async ionViewWillEnter() {
@@ -111,7 +111,7 @@ export class RootCharacterComponent {
         el.get('SWAPI_Character').id === entry.id,
     );
     entry.isFavorite = matched;
-    this.gifyService.getGifsByKeyword(entry.get('name')).subscribe((result) => {
+    this.giphyService.getGifsByKeyword(entry.get('name')).subscribe((result) => {
       // eslint-disable-next-line @typescript-eslint/dot-notation
       entry.img = result['data'][0];
     });

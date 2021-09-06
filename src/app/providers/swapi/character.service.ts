@@ -4,6 +4,7 @@ import * as Parse from 'parse';
 import { Observable, of } from 'rxjs';
 
 import { CONSTANTS } from '../../app.constants';
+import { GiphyService } from '../giphy/giphy.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class CharacterService {
   private parseJSKey: string = CONSTANTS.parseJSKey;
   private parseServerUrl: string = CONSTANTS.parseServerUrl;
 
-  constructor() {
+  constructor(public giphyService: GiphyService) {
     this.parseInitialize();
   }
 
@@ -69,6 +70,29 @@ export class CharacterService {
     query.include('homeworld');
 
     return of(await query.find());
+  }
+
+  public async mapGifyToCharacters() {
+    const characters = await this.getCharacters();
+    characters.forEach((row) => {
+      if (isEmpty(row.get('imgUrl'))) {
+        this.giphyService
+          .getGifsByKeyword(row.get('name'))
+          .subscribe((result) => {
+            // eslint-disable-next-line @typescript-eslint/dot-notation
+            const firstData = result['data'][0];
+            row.set('imgUrl', firstData?.images.original.url);
+          });
+      }
+    });
+
+    // NOTE: Unfortunately, I discovered its not possible to add data to a connected DB using Parse Hub,
+    // But at least, this gives an example on how to bulk save using Parse query syntax.
+    Parse.Object.saveAll(characters)
+      .then((r) => r)
+      .catch((err) => {
+        throw err;
+      });
   }
 
   private parseInitialize() {
