@@ -1,24 +1,32 @@
-<ion-item *ngFor="let item of list">
-  <ion-avatar slot="start">
-    <img [src]="item.img?.images.original.url" />
-  </ion-avatar>
-
-  <ion-label>
-    <!-- <p class="text-smaller">id: {{ item.id }}</p> -->
-    <h2>{{ item.get('name') }}</h2>
-    <h3>{{ item.get('gender') | titlecase }}</h3>
-    <p>{{ item.get('homeworld').get('name') }}</p>
-  </ion-label>
-
-  <ion-button
-    color="{{ item?.isFavorite ? 'success' : 'primary' }}"
-    (click)="toggleAddToFavorites(item)"
-  >
-    <ion-icon
-      name="{{ item?.isFavorite ? 'star' : 'star-outline' }}"
-    ></ion-icon>
-  </ion-button>
-</ion-item>
+<section class="cards">
+  <article *ngFor="let entry of list; let i = index">
+    <ion-card>
+      <ion-img [src]="entry.img?.images.original.url"></ion-img>
+      <ion-card-title>
+        {{ entry.get('name') }}
+      </ion-card-title>
+      <ion-card-subtitle>
+        <ion-badge *ngIf="entry.get('gender')">
+          <ion-icon name="{{ entry.genderIcon }}"></ion-icon>
+        </ion-badge>
+      </ion-card-subtitle>
+      <div class="boxshadow"></div>
+      <ion-card-content>
+        <ion-badge
+          *ngIf="entry.get('homeworld').get('name')"
+          class="pill"
+          slot="end"
+          color="success"
+        >
+          <h3>
+            <ion-icon slot="start" name="planet"></ion-icon> &nbsp;
+            <strong>{{ entry.get('homeworld').get('name') }}</strong>
+          </h3>
+        </ion-badge>
+      </ion-card-content>
+    </ion-card>
+  </article>
+</section>
 
 <ion-infinite-scroll
   *ngIf="!this.lastPage"

@@ -115,6 +115,17 @@ export class RootCharacterComponent {
       // eslint-disable-next-line @typescript-eslint/dot-notation
       entry.img = result['data'][0];
     });
+    switch (entry.get('gender')) {
+      case 'male':
+        entry.genderIcon = 'male';
+        break;
+      case 'female':
+        entry.genderIcon = 'female';
+        break;
+      case 'hermaphrodite':
+        entry.genderIcon = 'male-female';
+        break;
+    }
 
     return entry;
   }
