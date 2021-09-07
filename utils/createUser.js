@@ -2,8 +2,8 @@
 const Parse = require('parse/node');
 const _ = require('lodash');
 
-const parseAppId = '0smc8Z0Y7meBBfPlyQRAuCpeuVhndKk8FUelIywH';
-const parseJSKey = 'fa4YC70zCRmTCmxYWVvkYpRrIh0rzCPvbdV8rIaC';
+const parseAppId = '4mc8ktXRGD4KsYFwStxqzFgeHkU1xDQJFYfFeacI';
+const parseJSKey = 'vz9VukFZRUCIUIyZztRrNLpT0dxcmaD2bz3NGaL7';
 const parseServerUrl = 'https://parseapi.back4app.com/';
 
 Parse.initialize(parseAppId, parseJSKey);

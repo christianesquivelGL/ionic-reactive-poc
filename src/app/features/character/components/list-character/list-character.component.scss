@@ -5,7 +5,7 @@ ion-card {
     margin-bottom: -3px;
   }
   ion-card-title {
-    color:  var(--ion-color-light);
+    color: var(--ion-color-light);
     font-size: 30px;
     position: absolute;
     top: 5%;
@@ -37,13 +37,8 @@ ion-card {
     z-index: 1;
     box-shadow: inset 0 0 15rem rgba(var(--ion-color-dark-rgb), 0.33);
   }
-  .pill {
-    right: 2%;
-    bottom: 20%;
-    position: absolute;
-  }
   ion-badge {
-    margin: 3px;
+    margin: 0 3px;
   }
 }
 

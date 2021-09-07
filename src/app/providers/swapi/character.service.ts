@@ -19,7 +19,7 @@ export class CharacterService {
   }
 
   public async getCharacters(): Promise<Parse.Object[]> {
-    const obj = Parse.Object.extend('SWAPI_Character');
+    const obj = Parse.Object.extend('Character');
     const query = new Parse.Query(obj);
     query.ascending('name');
     query.include('homeworld');
@@ -32,7 +32,7 @@ export class CharacterService {
     pageSize: number,
     searchCriteria: any,
   ): Promise<Parse.Object[]> {
-    const obj = Parse.Object.extend('SWAPI_Character');
+    const obj = Parse.Object.extend('Character');
     let query = new Parse.Query(obj);
 
     if (!isEmpty(searchCriteria)) {
@@ -42,7 +42,7 @@ export class CharacterService {
       // const eyeColor = new Parse.Query(obj);
       // name.matches('eyeColor', searchCriteria, 'i');
 
-      const planet = Parse.Object.extend('SWAPI_Planet');
+      const planet = Parse.Object.extend('Planet');
       const planetQuery = new Parse.Query(planet);
       planetQuery.matches('name', searchCriteria, 'i');
       const characterByHomeworld = new Parse.Query(obj);
@@ -64,7 +64,7 @@ export class CharacterService {
 
   // NOTE: Managing service result as observable
   public async getCharactersObservable(): Promise<Observable<Parse.Object[]>> {
-    const obj = Parse.Object.extend('SWAPI_Character');
+    const obj = Parse.Object.extend('Character');
     const query = new Parse.Query(obj);
     query.ascending('name');
     query.include('homeworld');
@@ -86,8 +86,6 @@ export class CharacterService {
       }
     });
 
-    // NOTE: Unfortunately, I discovered its not possible to add data to a connected DB using Parse Hub,
-    // But at least, this gives an example on how to bulk save using Parse query syntax.
     Parse.Object.saveAll(characters)
       .then((r) => r)
       .catch((err) => {

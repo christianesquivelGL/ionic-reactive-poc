@@ -71,6 +71,12 @@ export class RootCharacterComponent {
     this.ionRefresher = false;
   }
 
+  criteriaChangedManually() {
+    this.scrollToTop();
+    this.resetPagination();
+    this.search();
+  }
+
   async search(): Promise<any> {
     this.loading = !this.useInfiniteScroll && !this.ionRefresher;
     return new Promise(async (resolve, reject) => {
@@ -108,13 +114,19 @@ export class RootCharacterComponent {
     const matched = this.favoritesList.some(
       (el) =>
         el.get('user').id === this.authService.getCurrentUser().id &&
-        el.get('SWAPI_Character').id === entry.id,
+        el.get('character').id === entry.id,
     );
     entry.isFavorite = matched;
-    this.giphyService.getGifsByKeyword(entry.get('name')).subscribe((result) => {
-      // eslint-disable-next-line @typescript-eslint/dot-notation
-      entry.img = result['data'][0];
-    });
+    entry.img = entry.get('imgUrl');
+    if (isEmpty(entry.img)) {
+      this.giphyService
+        .getGifsByKeyword(entry.get('name'))
+        .subscribe((result) => {
+          // eslint-disable-next-line @typescript-eslint/dot-notation
+          const firstRes = result['data'][0];
+          entry.img = firstRes?.images.original.url || '';
+        });
+    }
     switch (entry.get('gender')) {
       case 'male':
         entry.genderIcon = 'male';
@@ -124,6 +136,8 @@ export class RootCharacterComponent {
         break;
       case 'hermaphrodite':
         entry.genderIcon = 'male-female';
+        break;
+      default:
         break;
     }
 

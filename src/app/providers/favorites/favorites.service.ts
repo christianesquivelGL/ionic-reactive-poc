@@ -21,8 +21,8 @@ export class FavoritesService {
     const obj = Parse.Object.extend('FavoriteCharacters');
     const query = new Parse.Query(obj);
     query.equalTo('user', this.authService.getCurrentUser());
-    query.include('SWAPI_Character');
-    query.include('SWAPI_Character.homeworld');
+    query.include('character');
+    query.include('character.homeworld');
 
     return query.find();
   }
@@ -31,11 +31,11 @@ export class FavoritesService {
     const obj = Parse.Object.extend('FavoriteCharacters');
     const row = new obj();
     row.set('user', this.authService.getCurrentUser());
-    row.set('SWAPI_Character', entry);
+    row.set('character', entry);
 
     const query = new Parse.Query(obj);
     query.equalTo('user', this.authService.getCurrentUser());
-    query.equalTo('SWAPI_Character', entry);
+    query.equalTo('character', entry);
 
     const res = await query.first();
     if (res) {

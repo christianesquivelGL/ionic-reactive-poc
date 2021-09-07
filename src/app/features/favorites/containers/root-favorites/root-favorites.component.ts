@@ -44,10 +44,10 @@ export class RootFavoritesComponent {
 
   formatCharacter(entry) {
     this.gifyService
-      .getGifsByKeyword(entry.get('SWAPI_Character').get('name'))
+      .getGifsByKeyword(entry.get('character').get('name'))
       .subscribe((result) => {
         // eslint-disable-next-line @typescript-eslint/dot-notation
-        entry.attributes.SWAPI_Character.img = result['data'][0];
+        entry.attributes.character.img = result['data'][0];
       });
 
     return entry;
@@ -55,7 +55,7 @@ export class RootFavoritesComponent {
 
   async toggleAddToFavorites(entry: Parse.Object) {
     const res = await this.favoritesService.toggleAddToFavoriteCharacters(
-      entry.get('SWAPI_Character'),
+      entry.get('character'),
     );
 
     if (res) {

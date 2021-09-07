@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "swapi-db"
+    },
+    "swapi-db": {
+      "applicationId": "4mc8ktXRGD4KsYFwStxqzFgeHkU1xDQJFYfFeacI"
+    }
+  }
+}

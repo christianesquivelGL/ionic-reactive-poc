@@ -17,7 +17,7 @@
       placeholder="{{ 'app.button.search' | translate }}"
       inputmode="text"
       [(ngModel)]="searchCriteria"
-      (ionChange)="search()"
+      (ionChange)="criteriaChangedManually()"
       (ionClear)="clearSearchBar()"
       (debounce)="(500)"
     ></ion-searchbar>

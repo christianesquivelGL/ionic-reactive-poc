@@ -74,13 +74,13 @@ export class ObservablePlaygroundPage implements OnInit {
     const obj = Parse.Object.extend('FavoriteCharacters');
     const query = new Parse.Query(obj);
     query.equalTo('user', this.authService.getCurrentUser());
-    query.include('SWAPI_Character');
+    query.include('character');
 
     return query.find();
   }
 
   fetchPlanetsFromSWAPI() {
-    const obj = Parse.Object.extend('SWAPI_Planet');
+    const obj = Parse.Object.extend('Planet');
     const query = new Parse.Query(obj);
     query.ascending('name');
     query.limit(10);

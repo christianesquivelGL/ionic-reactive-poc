@@ -1,12 +1,12 @@
 <ion-item *ngFor="let item of list">
   <ion-avatar slot="start">
-    <img [src]="item.get('SWAPI_Character').img?.images.original.url" />
+    <img [src]="item.get('character').img?.images.original.url" />
   </ion-avatar>
 
   <ion-label>
-    <h2>{{ item.get('SWAPI_Character').get('name') }}</h2>
-    <h3>{{ item.get('SWAPI_Character').get('gender') | titlecase }}</h3>
-    <p>{{ item.get('SWAPI_Character').get('homeworld').get('name') }}</p>
+    <h2>{{ item.get('character').get('name') }}</h2>
+    <h3>{{ item.get('character').get('gender') | titlecase }}</h3>
+    <p>{{ item.get('character').get('homeworld').get('name') }}</p>
   </ion-label>
 
   <ion-button color="danger" (click)="toggleAddToFavorites(item)">

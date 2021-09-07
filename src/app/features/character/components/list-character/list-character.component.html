@@ -1,27 +1,30 @@
 <section class="cards">
   <article *ngFor="let entry of list; let i = index">
     <ion-card>
-      <ion-img [src]="entry.img?.images.original.url"></ion-img>
+      <ion-img [src]="entry.img"></ion-img>
       <ion-card-title>
         {{ entry.get('name') }}
       </ion-card-title>
-      <ion-card-subtitle>
-        <ion-badge *ngIf="entry.get('gender')">
-          <ion-icon name="{{ entry.genderIcon }}"></ion-icon>
-        </ion-badge>
-      </ion-card-subtitle>
       <div class="boxshadow"></div>
       <ion-card-content>
         <ion-badge
-          *ngIf="entry.get('homeworld').get('name')"
-          class="pill"
-          slot="end"
-          color="success"
+          color="{{ entry?.isFavorite ? 'success' : 'primary' }}"
+          (click)="toggleAddToFavorites(entry)"
         >
-          <h3>
-            <ion-icon slot="start" name="planet"></ion-icon> &nbsp;
-            <strong>{{ entry.get('homeworld').get('name') }}</strong>
-          </h3>
+          <ion-icon
+            name="{{ entry?.isFavorite ? 'star' : 'star-outline' }}"
+          ></ion-icon>
+        </ion-badge>
+        <ion-badge class="gender-pill" *ngIf="entry.get('gender')">
+          <ion-icon name="{{ entry.genderIcon }}"></ion-icon>
+        </ion-badge>
+        <ion-badge
+          *ngIf="entry.get('homeworld').get('name')"
+          class="planet-pill"
+          color="tertiary"
+        >
+          <ion-icon name="planet"></ion-icon>
+          {{ entry.get('homeworld').get('name') }}
         </ion-badge>
       </ion-card-content>
     </ion-card>

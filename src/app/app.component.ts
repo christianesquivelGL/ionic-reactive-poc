@@ -65,10 +65,6 @@ export class AppComponent implements OnDestroy {
         icon: 'globe',
       },
     ];
-    this.tippyService.setContent(
-      'editUserTippy',
-      this.translate.get('app.label.profile'),
-    );
   }
 
   initializeApp() {
