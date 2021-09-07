@@ -9,6 +9,7 @@
       <ion-card-content>
         <ion-badge
           color="{{ entry?.isFavorite ? 'success' : 'primary' }}"
+          tappable
           (click)="toggleAddToFavorites(entry)"
         >
           <ion-icon

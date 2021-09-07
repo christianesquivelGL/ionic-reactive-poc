@@ -20,12 +20,7 @@ export class ObservablePlaygroundPage implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  async ngOnInit() {
-    // NOTE: Use 'of' operator if data on stream is an object, otherwise use 'from' if its an array of values
-    of(await this.fetchMiscValue()).subscribe((r) => {
-      this.headerData = r.get('value');
-    });
-
+  async ionViewWillEnter() {
     const rawFavorites = await this.fetchFavorites();
     console.log('🚀 ~ rawFavorites data from parse', rawFavorites);
     this.favorites$ = from(rawFavorites);
@@ -59,6 +54,13 @@ export class ObservablePlaygroundPage implements OnInit {
         '🚀 ~ filter() from observable where name equals Alderaan -> ',
         r,
       );
+    });
+  }
+
+  async ngOnInit() {
+    // NOTE: Use 'of' operator if data on stream is an object, otherwise use 'from' if its an array of values
+    of(await this.fetchMiscValue()).subscribe((r) => {
+      this.headerData = r.get('value');
     });
   }
 
