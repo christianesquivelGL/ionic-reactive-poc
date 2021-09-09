@@ -1,5 +1,13 @@
-ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+:host {
+  ion-content {
+    --background: var(--ion-color-primary);
+  }
+
+  ion-list {
+    &.list-md {
+      padding: 0;
+    }
+  }
 }
 
 .menu-last {

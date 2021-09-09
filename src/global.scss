@@ -102,20 +102,13 @@ ion-menu {
 }
 
 ion-toolbar.user-info {
-
   ion-text {
     word-break: break-all;
   }
 }
 
-ion-toolbar {
-  &.ion-color-primary {
-    --ion-color-base: linear-gradient(
-      0deg,
-      var(--dark_blue),
-      var(--blue)
-    ) !important;
-  }
+ion-toolbar.user-info {
+  --background: var(--ion-color-primary);
 }
 
 .standard-content-width {
@@ -125,4 +118,9 @@ ion-toolbar {
 .alert-wrapper {
   max-width: unset !important;
   min-width: 30% !important;
+}
+
+.centerSpinner {
+  display: block;
+  margin: auto;
 }

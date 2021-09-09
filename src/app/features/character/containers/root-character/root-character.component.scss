@@ -1,4 +1,14 @@
-.centerSpinner {
-  display: block;
-  margin: auto;
+:host {
+  ion-content {
+    --background: none;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+      url('../../../../../assets/img/stars-bg.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+ion-searchbar {
+  background-color: var(--ion-color-tertiary);
 }

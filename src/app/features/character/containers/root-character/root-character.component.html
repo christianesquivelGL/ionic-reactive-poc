@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -9,19 +9,19 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-searchbar
+  slot="fixed"
+  color="medium"
+  placeholder="{{ 'app.button.search' | translate }}"
+  inputmode="text"
+  [(ngModel)]="searchCriteria"
+  (ionChange)="criteriaChangedManually()"
+  (ionClear)="clearSearchBar()"
+  (debounce)="(500)"
+></ion-searchbar>
+
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
-    <ion-searchbar
-      slot="fixed"
-      color="medium"
-      placeholder="{{ 'app.button.search' | translate }}"
-      inputmode="text"
-      [(ngModel)]="searchCriteria"
-      (ionChange)="criteriaChangedManually()"
-      (ionClear)="clearSearchBar()"
-      (debounce)="(500)"
-    ></ion-searchbar>
-
     <ion-refresher
       slot="fixed"
       (ionRefresh)="this.doRefresh($event)"
@@ -43,15 +43,13 @@
       </p>
     </ion-item>
 
-    <ion-card *ngIf="list.length && !loading" color="light">
-      <ion-card-content>
-        <app-list-character
-          [list]="list"
-          [lastPage]="lastPage"
-          (toggleAddToFavoritesEmitter)="toggleAddToFavorites($event)"
-          (loadMoreEmitter)="loadMore()"
-        ></app-list-character>
-      </ion-card-content>
-    </ion-card>
+    <div *ngIf="list.length && !loading">
+      <app-list-character
+        [list]="list"
+        [lastPage]="lastPage"
+        (toggleAddToFavoritesEmitter)="toggleAddToFavorites($event)"
+        (loadMoreEmitter)="loadMore()"
+      ></app-list-character>
+    </div>
   </div>
 </ion-content>
