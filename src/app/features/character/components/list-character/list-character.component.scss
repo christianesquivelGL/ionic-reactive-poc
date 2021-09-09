@@ -2,7 +2,10 @@ ion-card {
   position: relative;
 
   ion-img {
-    margin-bottom: -3px;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   ion-card-title {
     color: var(--ion-color-light);
