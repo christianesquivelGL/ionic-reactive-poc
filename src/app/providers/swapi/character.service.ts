@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { isEmpty } from 'lodash';
 import * as Parse from 'parse';
 import { Observable, of } from 'rxjs';
+import { SearchFilters } from 'src/app/features/character/models/searchFilters.model';
 
 import { CONSTANTS } from '../../app.constants';
 import { GiphyService } from '../giphy/giphy.service';
@@ -31,24 +32,42 @@ export class CharacterService {
     page: number,
     pageSize: number,
     searchCriteria: any,
+    searchFilters: SearchFilters[],
   ): Promise<Parse.Object[]> {
     const obj = Parse.Object.extend('Character');
     let query = new Parse.Query(obj);
 
+    const queries = [];
+
     if (!isEmpty(searchCriteria)) {
       const name = new Parse.Query(obj);
       name.matches('name', searchCriteria, 'i');
+      queries.push(name);
 
-      // const eyeColor = new Parse.Query(obj);
-      // name.matches('eyeColor', searchCriteria, 'i');
+      searchFilters.forEach((f) => {
+        if (f.key === 'planetName' && f.value) {
+          const planet = Parse.Object.extend('Planet');
+          const planetQuery = new Parse.Query(planet);
+          planetQuery.matches('name', searchCriteria, 'i');
+          const characterByHomeworld = new Parse.Query(obj);
+          characterByHomeworld.matchesQuery('homeworld', planetQuery);
+          queries.push(characterByHomeworld);
+        }
 
-      const planet = Parse.Object.extend('Planet');
-      const planetQuery = new Parse.Query(planet);
-      planetQuery.matches('name', searchCriteria, 'i');
-      const characterByHomeworld = new Parse.Query(obj);
-      characterByHomeworld.matchesQuery('homeworld', planetQuery);
+        if (f.key === 'hairColor' && f.value) {
+          const hairColor = new Parse.Query(obj);
+          hairColor.matches('hairColor', searchCriteria, 'i');
+          queries.push(hairColor);
+        }
 
-      query = Parse.Query.or(name, characterByHomeworld);
+        if (f.key === 'eyeColor' && f.value) {
+          const eyeColor = new Parse.Query(obj);
+          eyeColor.matches('eyeColor', searchCriteria, 'i');
+          queries.push(eyeColor);
+        }
+      });
+
+      query = Parse.Query.or(...queries);
     }
 
     query.ascending('name');

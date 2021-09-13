@@ -11,6 +11,7 @@ import { CharacterService } from '../../../../providers/swapi/character.service'
 import { TranslateProvider } from '../../../../providers/translate/translate.service';
 import { ListCharacterComponent } from '../../components/list-character/list-character.component';
 import { Character } from '../../models/character.model';
+import { SearchFilters } from '../../models/searchFilters.model';
 
 @Component({
   selector: 'app-root-character',
@@ -31,6 +32,24 @@ export class RootCharacterComponent {
   lastPage: boolean;
   fetchingPage: boolean;
   ionRefresher = false;
+
+  searchFilters: SearchFilters[] = [
+    {
+      key: 'planetName',
+      title: 'Planet Name',
+      value: false,
+    },
+    {
+      key: 'eyeColor',
+      title: 'Eye Color',
+      value: false,
+    },
+    {
+      key: 'hairColor',
+      title: 'Hair Color',
+      value: false,
+    },
+  ];
 
   constructor(
     private loadingCtrl: LoadingController,
@@ -85,6 +104,7 @@ export class RootCharacterComponent {
           this.page,
           CONSTANTS.settings.pageSize,
           this.searchCriteria,
+          this.searchFilters,
         )
         .then((raw) => {
           if (this.useInfiniteScroll) {
@@ -179,6 +199,14 @@ export class RootCharacterComponent {
 
   scrollToTop() {
     this.content.scrollToTop(1500);
+  }
+
+  filterChanged() {
+    if (!isEmpty(this.searchCriteria)) {
+      this.scrollToTop();
+      this.resetPagination();
+      this.search();
+    }
   }
 
   async toggleAddToFavorites(entry: Character) {
