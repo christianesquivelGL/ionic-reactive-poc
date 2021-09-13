@@ -141,6 +141,11 @@ export class RootCharacterComponent {
         break;
     }
 
+    entry.tippyContent = `
+      Eye Color: ${entry.get('eyeColor')}<br>
+      Hair Color: ${entry.get('hairColor')}
+    `;
+
     return entry;
   }
 

@@ -22,6 +22,20 @@
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
+    <p>
+      <ion-button
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        <ion-icon name="filter"></ion-icon>&nbsp; Edit Search Filters
+      </ion-button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">WIP</div>
+    </div>
+
     <ion-refresher
       slot="fixed"
       (ionRefresh)="this.doRefresh($event)"
