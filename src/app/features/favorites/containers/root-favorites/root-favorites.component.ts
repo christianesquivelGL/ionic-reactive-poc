@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { map } from 'lodash';
 import { GiphyService } from 'src/app/providers/giphy/giphy.service';
 
 import { FeedbackService } from '../../../../libs/feedback/feedback.service';
@@ -32,25 +31,11 @@ export class RootFavoritesComponent {
     this.loading = true;
     await loading.present();
 
-    const resCharacters =
+    this.listCharacters =
       await this.favoritesService.getFavoriteCharactersByCurrentUser();
 
-      this.listCharacters = map(resCharacters, (entry) =>
-      this.formatCharacter(entry),
-      );
-      loading.dismiss();
-      this.loading = false;
-  }
-
-  formatCharacter(entry) {
-    this.gifyService
-      .getGifsByKeyword(entry.get('character').get('name'))
-      .subscribe((result) => {
-        // eslint-disable-next-line @typescript-eslint/dot-notation
-        entry.attributes.character.img = result['data'][0];
-      });
-
-    return entry;
+    loading.dismiss();
+    this.loading = false;
   }
 
   async toggleAddToFavorites(entry: Parse.Object) {

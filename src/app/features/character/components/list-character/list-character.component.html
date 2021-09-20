@@ -1,7 +1,7 @@
 <section class="cards">
   <article *ngFor="let entry of list; let i = index">
     <ion-card>
-      <ion-img [src]="entry.img"></ion-img>
+      <ion-img [src]="entry?.img"></ion-img>
       <ion-card-title>
         {{ entry.get('name') }}
       </ion-card-title>
@@ -20,7 +20,7 @@
           <ion-icon name="{{ entry.genderIcon }}"></ion-icon>
         </ion-badge>
         <ion-badge
-          *ngIf="entry.get('homeworld').get('name')"
+          *ngIf="entry.get('homeworld')?.get('name')"
           class="planet-pill"
           color="tertiary"
         >

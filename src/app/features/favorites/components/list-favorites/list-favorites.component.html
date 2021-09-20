@@ -1,6 +1,6 @@
 <ion-item *ngFor="let item of list">
   <ion-avatar slot="start">
-    <img [src]="item.get('character').img?.images.original.url" />
+    <img [src]="item.get('character').get('imgUrl')" />
   </ion-avatar>
 
   <ion-label>
