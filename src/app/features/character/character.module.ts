@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
 import { ListCharacterComponent } from './components/list-character/list-character.component';
+import { ViewCharacterComponent } from './components/view-character/view-character.component';
 import { RootCharacterComponentRoutingModule } from './containers/root-character/root-character-routing.module';
 import { RootCharacterComponent } from './containers/root-character/root-character.component';
 
@@ -21,7 +22,11 @@ import { RootCharacterComponent } from './containers/root-character/root-charact
     TranslateModule.forChild(),
     NgxTippyModule,
   ],
-  declarations: [RootCharacterComponent, ListCharacterComponent],
+  declarations: [
+    RootCharacterComponent,
+    ListCharacterComponent,
+    ViewCharacterComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CharacterModule {}

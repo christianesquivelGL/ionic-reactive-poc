@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { map } from 'lodash';
 
 import { FeedbackService } from '../../../../libs/feedback/feedback.service';
-import { GiphyService } from '../../../../providers/giphy/giphy.service';
 import { PlanetsService } from '../../../../providers/swapi/planets.service';
 import { TranslateProvider } from '../../../../providers/translate/translate.service';
 import { Planet } from '../../models/planet.model';
@@ -22,7 +20,6 @@ export class RootPlanetsComponent {
     private planetsService: PlanetsService,
     private feedbackService: FeedbackService,
     private translateProvider: TranslateProvider,
-    private gifyService: GiphyService,
   ) {}
 
   async ionViewWillEnter() {
@@ -33,19 +30,9 @@ export class RootPlanetsComponent {
     this.loading = true;
     await loading.present();
 
-    const res = await this.planetsService.getPlanets();
-    this.list = map(res, (entry: Planet) => this.addImageProperty(entry));
+    this.list = await this.planetsService.getPlanets();
     loading.dismiss();
     this.loading = false;
-  }
-
-  addImageProperty(entry: Planet) {
-    this.gifyService.getGifsByKeyword(entry.get('name')).subscribe((result) => {
-      // eslint-disable-next-line @typescript-eslint/dot-notation
-      entry.img = result['data'][0];
-    });
-
-    return entry;
   }
 
   async toggleAddToPlanets(entry: Parse.Object) {

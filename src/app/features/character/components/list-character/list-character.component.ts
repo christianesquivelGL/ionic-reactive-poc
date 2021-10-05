@@ -24,6 +24,7 @@ export class ListCharacterComponent implements OnInit {
 
   @Output() toggleAddToFavoritesEmitter = new EventEmitter<any>();
   @Output() loadMoreEmitter = new EventEmitter<any>();
+  @Output() chararacterClickEmitter = new EventEmitter<any>();
 
   constructor(public characterService: CharacterService) {}
 
@@ -43,5 +44,9 @@ export class ListCharacterComponent implements OnInit {
 
   completeInfiniteScroll() {
     this.infiniteScroll.complete();
+  }
+
+  onChararacterClick(character) {
+    this.chararacterClickEmitter.emit(character);
   }
 }

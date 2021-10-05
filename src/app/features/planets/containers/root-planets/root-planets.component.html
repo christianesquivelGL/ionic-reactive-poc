@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -11,13 +11,20 @@
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
-
-    <ion-text>WIP: This page will list planets using by calling a Parse Cloud Process that resides in the Node app from Back4app</ion-text>
-    <!-- <ion-card *ngIf="!listCharacters && !loading" color="light" class="ion-padding">
+    <ion-card color="medium" class="ion-padding">
+      <ion-text>
+        WIP: This page will list planets using by calling a Parse Cloud Process
+        that resides in the Node app from Back4app
+      </ion-text>
+    </ion-card>
+    <ion-card *ngIf="!list && !loading" color="light" class="ion-padding">
       {{ 'app.pages.favorites.noresults' | translate }}
     </ion-card>
-    <ion-title>
-      {{ 'app.pages.planets.title' | translate }}
-    </ion-title> -->
+
+    <ion-card>
+      <ion-item *ngFor="let item of list">
+        <ion-label>{{ item.get('name') }}</ion-label>
+      </ion-item>
+    </ion-card>
   </div>
 </ion-content>

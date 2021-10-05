@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonContent, LoadingController } from '@ionic/angular';
 import { each, isEmpty, map } from 'lodash';
 import { GiphyService } from 'src/app/providers/giphy/giphy.service';
@@ -52,6 +53,8 @@ export class RootCharacterComponent {
   ];
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private loadingCtrl: LoadingController,
     private characterService: CharacterService,
     private favoritesService: FavoritesService,
@@ -224,5 +227,13 @@ export class RootCharacterComponent {
         ),
       );
     }
+  }
+
+  view(character) {
+    console.log(
+      '🚀 ~ file: root-character.component.ts ~ line 233 ~ RootCharacterComponent ~ view ~ character',
+      character,
+    );
+    this.router.navigate([`view/${character.id}`], { relativeTo: this.route });
   }
 }
