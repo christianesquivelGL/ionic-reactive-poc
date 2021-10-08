@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { CharacterService } from 'src/app/providers/swapi/character.service';
 
 @Component({
   selector: 'app-view-character',
@@ -14,9 +15,7 @@ export class ViewCharacterComponent {
 
   constructor(
     public route: ActivatedRoute,
-    // private authService: AuthService,
-    // private userService: UserService,
-    // private userClientsService: UserClientsService,
+    private characterService: CharacterService,
     private loadingCtrl: LoadingController,
   ) {}
 
@@ -27,7 +26,9 @@ export class ViewCharacterComponent {
   async fetch() {
     const loader = await this.loadingCtrl.create();
     loader.present();
-    // this.selectedEntity = await this.userService.GetUser(this.userId);
+    this.selectedEntity = await this.characterService.getCharacterById(
+      this.characterId,
+    );
     loader.dismiss();
   }
 }

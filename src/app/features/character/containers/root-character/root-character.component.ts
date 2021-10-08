@@ -230,10 +230,6 @@ export class RootCharacterComponent {
   }
 
   view(character) {
-    console.log(
-      '🚀 ~ file: root-character.component.ts ~ line 233 ~ RootCharacterComponent ~ view ~ character',
-      character,
-    );
     this.router.navigate([`view/${character.id}`], { relativeTo: this.route });
   }
 }
