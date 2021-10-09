@@ -9,6 +9,24 @@
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
-    WIP
+    <ion-card *ngIf="!!this.selectedEntity.id">
+      <ion-img [src]="selectedEntity.get('imgUrl')"></ion-img>
+      <ion-card-header>
+        <ion-card-title>{{ this.selectedEntity.get('name') }}</ion-card-title>
+        <ion-card-subtitle>
+          Homeworld: {{ this.selectedEntity.get('homeworld').get('name') }}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h2>Basic Info</h2>
+        {{ selectedEntity.get('birthYear') }}<br />
+        {{ selectedEntity.get('eyeColor') }}<br />
+        {{ selectedEntity.get('gender') }}<br />
+        {{ selectedEntity.get('hairColor') }}<br />
+        {{ selectedEntity.get('height') }}<br />
+        {{ selectedEntity.get('mass') }}<br />
+        {{ selectedEntity.get('skinColor') }}<br />
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

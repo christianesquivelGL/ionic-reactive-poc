@@ -115,6 +115,7 @@ export class CharacterService {
   public getCharacterById(characterId: string): Promise<Parse.Object> {
     const obj = Parse.Object.extend('Character');
     const query = new Parse.Query(obj);
+    query.include('homeworld');
 
     return query.get(characterId);
   }

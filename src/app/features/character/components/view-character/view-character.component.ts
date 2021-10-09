@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { ParseUtilsService } from 'src/app/providers/parse.utils.service';
 import { CharacterService } from 'src/app/providers/swapi/character.service';
+import { Character } from '../../models/character.model';
 
 @Component({
   selector: 'app-view-character',
@@ -10,12 +12,12 @@ import { CharacterService } from 'src/app/providers/swapi/character.service';
 })
 export class ViewCharacterComponent {
   characterId = this.route.snapshot.paramMap.get('characterId');
-  loading = false;
-  selectedEntity = {} as Parse.Object;
+  selectedEntity = {} as Character;
 
   constructor(
     public route: ActivatedRoute,
     private characterService: CharacterService,
+    private parseUtilsService: ParseUtilsService,
     private loadingCtrl: LoadingController,
   ) {}
 
@@ -30,5 +32,22 @@ export class ViewCharacterComponent {
       this.characterId,
     );
     loader.dismiss();
+
+    if (!!this.selectedEntity) {
+      this.selectedEntity.species =
+        await this.parseUtilsService.getRelationList(
+          this.selectedEntity.get('species'),
+        );
+      this.selectedEntity.starships =
+        await this.parseUtilsService.getRelationList(
+          this.selectedEntity.get('starships'),
+        );
+      this.selectedEntity.vehicles =
+        await this.parseUtilsService.getRelationList(
+          this.selectedEntity.get('vehicles'),
+        );
+
+      console.log('🚀 ~ this.selectedEntity', this.selectedEntity);
+    }
   }
 }
