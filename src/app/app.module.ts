@@ -10,6 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
+import { SwiperModule } from 'swiper/angular';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +47,7 @@ export function httpLoaderFactory(http: HttpClient) {
     AgGridModule.withComponents([]),
     SharedModule,
     NgxTippyModule,
+    SwiperModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

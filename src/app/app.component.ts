@@ -58,12 +58,12 @@ export class AppComponent implements OnDestroy {
         direct: 'root',
         icon: 'planet',
       },
-      {
-        title: 'Observables',
-        url: '/observable-playground',
-        direct: 'root',
-        icon: 'globe',
-      },
+      // {
+      //   title: 'Observables',
+      //   url: '/observable-playground',
+      //   direct: 'root',
+      //   icon: 'globe',
+      // },
     ];
   }
 

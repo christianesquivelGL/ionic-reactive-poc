@@ -22,6 +22,15 @@
   "app.label.fetching": "Fetching...",
   "app.label.noresults": "No results found for",
 
+  "app.label.homeworld": "Homeworld",
+  "app.label.birthyear": "Birth Year",
+  "app.label.eyecolor": "Eye Color",
+  "app.label.gender": "Gender",
+  "app.label.haircolor": "Hair Color",
+  "app.label.height": "Height",
+  "app.label.mass": "Mass",
+  "app.label.skincolor": "Skin Color",
+
   "app.pages.auth.login": "Log In",
   "app.pages.auth.invaliduser": "Invalid User",
   "app.pages.auth.retrycredentials": "Verfiy credentials and try again",
@@ -33,6 +42,7 @@
   "app.pages.characters.title": "Characters",
   "app.pages.characters.favorites.added": "Added to favorites",
   "app.pages.characters.favorites.removed": "Removed from favorites",
+  "app.pages.characters.view.title": "View Character",
 
   "app.pages.planets.title": "Planets"
 }

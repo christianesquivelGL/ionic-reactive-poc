@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { ParseUtilsService } from 'src/app/providers/parse.utils.service';
 import { CharacterService } from 'src/app/providers/swapi/character.service';
+import SwiperCore from 'swiper';
 import { Character } from '../../models/character.model';
 
 @Component({
@@ -49,5 +50,12 @@ export class ViewCharacterComponent {
 
       console.log('🚀 ~ this.selectedEntity', this.selectedEntity);
     }
+  }
+
+  onSwiper(swiper) {
+    console.log(swiper);
+  }
+  onSlideChange() {
+    console.log('slide change');
   }
 }

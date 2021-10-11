@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/character"></ion-back-button>
     </ion-buttons>
-    <ion-title>View Character</ion-title>
+    <ion-title>{{ 'app.pages.characters.view.title' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,18 +14,51 @@
       <ion-card-header>
         <ion-card-title>{{ this.selectedEntity.get('name') }}</ion-card-title>
         <ion-card-subtitle>
-          Homeworld: {{ this.selectedEntity.get('homeworld').get('name') }}
+          {{ 'app.label.homeworld' | translate }}:
+          {{ this.selectedEntity.get('homeworld').get('name') }}
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <h2>Basic Info</h2>
-        {{ selectedEntity.get('birthYear') }}<br />
-        {{ selectedEntity.get('eyeColor') }}<br />
-        {{ selectedEntity.get('gender') }}<br />
-        {{ selectedEntity.get('hairColor') }}<br />
-        {{ selectedEntity.get('height') }}<br />
-        {{ selectedEntity.get('mass') }}<br />
-        {{ selectedEntity.get('skinColor') }}<br />
+        <table class="table table-sm">
+          <tbody>
+            <tr>
+              <th>{{ 'app.label.birthyear' | translate }}</th>
+              <td>{{ selectedEntity.get('birthYear') | uppercase }}</td>
+            </tr>
+            <tr>
+              <th>{{ 'app.label.eyecolor' | translate }}</th>
+              <td>{{ selectedEntity.get('eyeColor') | titlecase }}</td>
+            </tr>
+            <tr>
+              <th>{{ 'app.label.gender' | translate }}</th>
+              <td>{{ selectedEntity.get('gender') | titlecase }}</td>
+            </tr>
+            <tr>
+              <th>{{ 'app.label.haircolor' | translate }}</th>
+              <td>{{ selectedEntity.get('hairColor') | titlecase }}</td>
+            </tr>
+            <tr>
+              <th>{{ 'app.label.height' | translate }}</th>
+              <td>{{ selectedEntity.get('height') }}</td>
+            </tr>
+            <tr>
+              <th>{{ 'app.label.mass' | translate }}</th>
+              <td>{{ selectedEntity.get('mass') }}</td>
+            </tr>
+            <tr>
+              <th>{{ 'app.label.skincolor' | translate }}</th>
+              <td>{{ selectedEntity.get('skinColor') | titlecase }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <swiper
+          [slidesPerView]="2"
+          [spaceBetween]="50"
+        >
+          <ng-template swiperSlide>Slide 1</ng-template>
+          <ng-template swiperSlide>Slide 2</ng-template>
+        </swiper>
       </ion-card-content>
     </ion-card>
   </div>

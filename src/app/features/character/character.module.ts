@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
+import { SwiperModule } from 'swiper/angular';
 
 import { ListCharacterComponent } from './components/list-character/list-character.component';
 import { ViewCharacterComponent } from './components/view-character/view-character.component';
@@ -21,6 +22,7 @@ import { RootCharacterComponent } from './containers/root-character/root-charact
     RootCharacterComponentRoutingModule,
     TranslateModule.forChild(),
     NgxTippyModule,
+    SwiperModule,
   ],
   declarations: [
     RootCharacterComponent,
