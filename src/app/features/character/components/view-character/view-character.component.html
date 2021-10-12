@@ -10,8 +10,8 @@
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
     <ion-card *ngIf="!!this.selectedEntity.id">
-      <ion-img [src]="selectedEntity.get('imgUrl')"></ion-img>
       <ion-card-header>
+        <img src="{{ selectedEntity.get('imgUrl') }}" alt="" />
         <ion-card-title>{{ this.selectedEntity.get('name') }}</ion-card-title>
         <ion-card-subtitle>
           {{ 'app.label.homeworld' | translate }}:
@@ -21,21 +21,33 @@
       <ion-card-content>
         <table class="table table-sm">
           <tbody>
+            <tr *ngIf="selectedEntity.species?.length && fullyLoaded">
+              <th>{{ 'app.label.species' | translate }}</th>
+              <td>
+                <div *ngFor="let species of selectedEntity.species">
+                  {{ species.get('name') | titlecase }}<br />
+                </div>
+              </td>
+            </tr>
             <tr>
               <th>{{ 'app.label.birthyear' | translate }}</th>
               <td>{{ selectedEntity.get('birthYear') | uppercase }}</td>
-            </tr>
-            <tr>
-              <th>{{ 'app.label.eyecolor' | translate }}</th>
-              <td>{{ selectedEntity.get('eyeColor') | titlecase }}</td>
             </tr>
             <tr>
               <th>{{ 'app.label.gender' | translate }}</th>
               <td>{{ selectedEntity.get('gender') | titlecase }}</td>
             </tr>
             <tr>
+              <th>{{ 'app.label.eyecolor' | translate }}</th>
+              <td>{{ selectedEntity.get('eyeColor') | titlecase }}</td>
+            </tr>
+            <tr>
               <th>{{ 'app.label.haircolor' | translate }}</th>
               <td>{{ selectedEntity.get('hairColor') | titlecase }}</td>
+            </tr>
+            <tr>
+              <th>{{ 'app.label.skincolor' | translate }}</th>
+              <td>{{ selectedEntity.get('skinColor') | titlecase }}</td>
             </tr>
             <tr>
               <th>{{ 'app.label.height' | translate }}</th>
@@ -45,20 +57,31 @@
               <th>{{ 'app.label.mass' | translate }}</th>
               <td>{{ selectedEntity.get('mass') }}</td>
             </tr>
-            <tr>
-              <th>{{ 'app.label.skincolor' | translate }}</th>
-              <td>{{ selectedEntity.get('skinColor') | titlecase }}</td>
-            </tr>
           </tbody>
         </table>
 
-        <swiper
+        <div *ngIf="selectedEntity?.vehicles?.length; else noVehicles">
+          <h2>{{ 'app.label.vehicles' | translate }}:</h2>
+          <swiper class="ion-margin-top" [slidesPerView]="2" [spaceBetween]="20">
+            <ng-template *ngFor="let vehicle of selectedEntity.vehicles" swiperSlide>
+              <img src='https://dummyimage.com/100x100.png' alt='' />
+              {{ vehicle.get('name') | titlecase }}
+            </ng-template>
+          </swiper>
+        </div>
+
+        <ng-template #noVehicles>
+          <ion-spinner *ngIf="!fullyLoaded"></ion-spinner>
+          <ion-text *ngIf="fullyLoaded">No vehicles available.</ion-text>
+        </ng-template>
+
+        <!-- <swiper
           [slidesPerView]="2"
           [spaceBetween]="50"
         >
           <ng-template swiperSlide>Slide 1</ng-template>
           <ng-template swiperSlide>Slide 2</ng-template>
-        </swiper>
+        </swiper> -->
       </ion-card-content>
     </ion-card>
   </div>

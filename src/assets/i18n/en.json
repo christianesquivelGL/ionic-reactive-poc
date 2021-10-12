@@ -30,6 +30,8 @@
   "app.label.height": "Height",
   "app.label.mass": "Mass",
   "app.label.skincolor": "Skin Color",
+  "app.label.species": "Species",
+  "app.label.vehicles": "Vehicles",
 
   "app.pages.auth.login": "Log In",
   "app.pages.auth.invaliduser": "Invalid User",

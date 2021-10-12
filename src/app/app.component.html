@@ -3,7 +3,7 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-header *ngIf="this.currentUser" class="ion-no-border">
         <ion-toolbar class="user-info">
-          <ion-card [routerLink]="['user-profile']" color="secondary">
+          <ion-card [routerLink]="['user-profile']" color="light">
             <ion-item lines="none" class="my-2">
               <ion-icon slot="start" name="person-circle"></ion-icon>
               <ion-text>
@@ -18,7 +18,9 @@
                   {{ this.currentUser.get('lastName') }}
                 </span>
                 <br />
-                {{ this.currentUser.get('email') }}
+                <span class="text-smaller">
+                  {{ this.currentUser.get('email') }}
+                </span>
               </ion-text>
             </ion-item>
           </ion-card>

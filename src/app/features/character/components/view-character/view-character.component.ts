@@ -14,6 +14,7 @@ import { Character } from '../../models/character.model';
 export class ViewCharacterComponent {
   characterId = this.route.snapshot.paramMap.get('characterId');
   selectedEntity = {} as Character;
+  fullyLoaded = false;
 
   constructor(
     public route: ActivatedRoute,
@@ -48,6 +49,7 @@ export class ViewCharacterComponent {
           this.selectedEntity.get('vehicles'),
         );
 
+      this.fullyLoaded = true;
       console.log('🚀 ~ this.selectedEntity', this.selectedEntity);
     }
   }
