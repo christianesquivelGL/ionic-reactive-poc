@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -11,7 +11,7 @@
 
 <ion-searchbar
   slot="fixed"
-  color="medium"
+  color="light"
   placeholder="{{ 'app.button.search' | translate }}"
   inputmode="text"
   [(ngModel)]="searchCriteria"
@@ -22,20 +22,20 @@
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
-    <p>
-      <ion-button
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseFilters"
-        aria-expanded="false"
-        aria-controls="collapseFilters"
-      >
-        <ion-icon name="filter"></ion-icon>&nbsp; Edit Search Filters
-      </ion-button>
-    </p>
+    <ion-button
+      color="medium"
+      class="mb-2"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseFilters"
+      aria-expanded="false"
+      aria-controls="collapseFilters"
+    >
+      <ion-icon name="filter"></ion-icon>&nbsp; {{ 'app.pages.characters.editsearchfilters' | translate }}
+    </ion-button>
     <div class="collapse" id="collapseFilters">
       <div class="card card-body">
         <ion-list>
-          <ion-item *ngFor="let entry of searchFilters">
+          <ion-item *ngFor="let entry of searchFilters" lines="none">
             <ion-label>{{ entry.title }}</ion-label>
             <ion-checkbox
               slot="start"

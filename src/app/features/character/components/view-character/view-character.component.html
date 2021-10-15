@@ -9,19 +9,24 @@
 
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
-    <ion-card *ngIf="!!this.selectedEntity.id">
+    <ion-card *ngIf="!loading.entity && !!selectedEntity.id; else skeleton">
       <ion-card-header>
-        <img src="{{ selectedEntity.get('imgUrl') }}" alt="" />
+        <ion-skeleton-text
+          [hidden]="!loading.mainImg"
+          animated
+          style="width: 100%; height: 100px"
+        ></ion-skeleton-text>
+        <img (load)="onImageLoad()" src="{{ selectedEntity.img }}" alt="" />
         <ion-card-title>{{ this.selectedEntity.get('name') }}</ion-card-title>
-        <ion-card-subtitle>
+        <ion-card-subtitle *ngIf="selectedEntity.get('homeworld')">
           {{ 'app.label.homeworld' | translate }}:
-          {{ this.selectedEntity.get('homeworld').get('name') }}
+          {{ selectedEntity.get('homeworld').get('name') }}
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <table class="table table-sm">
           <tbody>
-            <tr *ngIf="selectedEntity.species?.length && fullyLoaded">
+            <tr *ngIf="selectedEntity?.species?.length && !loading.additionalRelations">
               <th>{{ 'app.label.species' | translate }}</th>
               <td>
                 <div *ngFor="let species of selectedEntity.species">
@@ -29,31 +34,31 @@
                 </div>
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedEntity.get('birthYear')">
               <th>{{ 'app.label.birthyear' | translate }}</th>
               <td>{{ selectedEntity.get('birthYear') | uppercase }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedEntity.get('gender')">
               <th>{{ 'app.label.gender' | translate }}</th>
               <td>{{ selectedEntity.get('gender') | titlecase }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedEntity.get('eyeColor')">
               <th>{{ 'app.label.eyecolor' | translate }}</th>
               <td>{{ selectedEntity.get('eyeColor') | titlecase }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedEntity.get('hairColor')">
               <th>{{ 'app.label.haircolor' | translate }}</th>
               <td>{{ selectedEntity.get('hairColor') | titlecase }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedEntity.get('skinColor')">
               <th>{{ 'app.label.skincolor' | translate }}</th>
               <td>{{ selectedEntity.get('skinColor') | titlecase }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedEntity.get('height')">
               <th>{{ 'app.label.height' | translate }}</th>
               <td>{{ selectedEntity.get('height') }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedEntity.get('mass')">
               <th>{{ 'app.label.mass' | translate }}</th>
               <td>{{ selectedEntity.get('mass') }}</td>
             </tr>
@@ -71,18 +76,119 @@
         </div>
 
         <ng-template #noVehicles>
-          <ion-spinner *ngIf="!fullyLoaded"></ion-spinner>
-          <ion-text *ngIf="fullyLoaded">No vehicles available.</ion-text>
+          <ion-spinner *ngIf="loading.additionalRelations"></ion-spinner>
+          <ion-text *ngIf="!loading.additionalRelations">
+            {{ 'app.label.novehicles' | translate }}.
+          </ion-text>
         </ng-template>
-
-        <!-- <swiper
-          [slidesPerView]="2"
-          [spaceBetween]="50"
-        >
-          <ng-template swiperSlide>Slide 1</ng-template>
-          <ng-template swiperSlide>Slide 2</ng-template>
-        </swiper> -->
       </ion-card-content>
     </ion-card>
+
+    <ng-template #skeleton>
+      <ion-card>
+        <ion-card-header>
+          <ion-skeleton-text
+            animated
+            style="width: 100%; height: 100px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text
+            class="mt-3"
+            animated
+            style="width: 50%; height: 30px"
+          ></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        </ion-card-header>
+        <ion-card-content>
+          <table class="table table-sm">
+            <tbody>
+              <tr>
+                <th>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 70%"
+                  ></ion-skeleton-text>
+                </th>
+                <td>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 40%"
+                  ></ion-skeleton-text>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 70%"
+                  ></ion-skeleton-text>
+                </th>
+                <td>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 40%"
+                  ></ion-skeleton-text>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 70%"
+                  ></ion-skeleton-text>
+                </th>
+                <td>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 40%"
+                  ></ion-skeleton-text>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 70%"
+                  ></ion-skeleton-text>
+                </th>
+                <td>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 40%"
+                  ></ion-skeleton-text>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 70%"
+                  ></ion-skeleton-text>
+                </th>
+                <td>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 40%"
+                  ></ion-skeleton-text>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 70%"
+                  ></ion-skeleton-text>
+                </th>
+                <td>
+                  <ion-skeleton-text
+                    animated
+                    style="width: 40%"
+                  ></ion-skeleton-text>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
   </div>
 </ion-content>

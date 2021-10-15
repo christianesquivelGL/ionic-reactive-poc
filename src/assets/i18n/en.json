@@ -32,6 +32,7 @@
   "app.label.skincolor": "Skin Color",
   "app.label.species": "Species",
   "app.label.vehicles": "Vehicles",
+  "app.label.novehicles": "No vehicles available",
 
   "app.pages.auth.login": "Log In",
   "app.pages.auth.invaliduser": "Invalid User",
@@ -45,6 +46,7 @@
   "app.pages.characters.favorites.added": "Added to favorites",
   "app.pages.characters.favorites.removed": "Removed from favorites",
   "app.pages.characters.view.title": "View Character",
+  "app.pages.characters.editsearchfilters": "Edit Search Filters",
 
   "app.pages.planets.title": "Planets"
 }
