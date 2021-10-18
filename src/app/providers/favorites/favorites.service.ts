@@ -27,6 +27,15 @@ export class FavoritesService {
     return query.find();
   }
 
+  public isCharacterFavoriteByCurrentUser(character): Promise<Parse.Object> {
+    const obj = Parse.Object.extend('FavoriteCharacters');
+    const query = new Parse.Query(obj);
+    query.equalTo('user', this.authService.getCurrentUser());
+    query.equalTo('character', character);
+
+    return query.first();
+  }
+
   public async toggleAddToFavoriteCharacters(entry: Parse.Object<Parse.Attributes>) {
     const obj = Parse.Object.extend('FavoriteCharacters');
     const row = new obj();

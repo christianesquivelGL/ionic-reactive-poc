@@ -4,6 +4,16 @@
       <ion-back-button defaultHref="/character"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ 'app.pages.characters.view.title' | translate }}</ion-title>
+    <ion-buttons slot="end" *ngIf="loading.isFavorite">
+      <ion-spinner color="light"></ion-spinner>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="!loading.isFavorite">
+      <ion-icon
+        slot="start"
+        name="{{ selectedEntity.isFavorite ? 'star' : 'star-outline' }}"
+        (click)="toggleAddToFavorites()"
+      ></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -26,7 +36,11 @@
       <ion-card-content>
         <table class="table table-sm">
           <tbody>
-            <tr *ngIf="selectedEntity?.species?.length && !loading.additionalRelations">
+            <tr
+              *ngIf="
+                selectedEntity?.species?.length && !loading.additionalRelations
+              "
+            >
               <th>{{ 'app.label.species' | translate }}</th>
               <td>
                 <div *ngFor="let species of selectedEntity.species">
@@ -67,9 +81,25 @@
 
         <div *ngIf="selectedEntity?.vehicles?.length; else noVehicles">
           <h2>{{ 'app.label.vehicles' | translate }}:</h2>
-          <swiper class="ion-margin-top" [slidesPerView]="2" [spaceBetween]="20">
-            <ng-template *ngFor="let vehicle of selectedEntity.vehicles" swiperSlide>
-              <img src='https://dummyimage.com/100x100.png' alt='' />
+          <swiper
+            class="ion-margin-top"
+            [slidesPerView]="2"
+            [spaceBetween]="20"
+          >
+            <ng-template
+              *ngFor="let vehicle of selectedEntity.vehicles"
+              swiperSlide
+            >
+              <img
+                *ngIf="!vehicle.get('imgUrl')"
+                src="https://dummyimage.com/100x100.png"
+                alt=""
+              />
+              <img
+                *ngIf="vehicle.get('imgUrl')"
+                src="{{ vehicle.get('imgUrl') }}"
+                alt=""
+              />
               {{ vehicle.get('name') | titlecase }}
             </ng-template>
           </swiper>

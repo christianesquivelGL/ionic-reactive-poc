@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonContent, LoadingController } from '@ionic/angular';
 import { each, isEmpty, map } from 'lodash';
@@ -19,7 +19,7 @@ import { SearchFilters } from '../../models/searchFilters.model';
   templateUrl: './root-character.component.html',
   styleUrls: ['./root-character.component.scss'],
 })
-export class RootCharacterComponent {
+export class RootCharacterComponent implements OnInit {
   @ViewChild(IonContent) content: IonContent;
   @ViewChild(ListCharacterComponent) listComponent: ListCharacterComponent;
 
@@ -29,7 +29,7 @@ export class RootCharacterComponent {
   loading: boolean;
   noResults: boolean;
   useInfiniteScroll: boolean;
-  page: number;
+  page = 0;
   lastPage: boolean;
   fetchingPage: boolean;
   ionRefresher = false;
@@ -64,7 +64,7 @@ export class RootCharacterComponent {
     private giphyService: GiphyService,
   ) {}
 
-  async ionViewWillEnter() {
+  async ngOnInit() {
     const loading = await this.loadingCtrl.create({
       message: this.translateProvider.get('app.label.fetching'),
       spinner: 'bubbles',
