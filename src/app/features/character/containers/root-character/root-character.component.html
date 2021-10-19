@@ -23,28 +23,32 @@
 <ion-content>
   <div class="ion-padding standard-content-width mx-auto">
     <ion-button
+      expand="block"
       color="medium"
-      class="mb-2"
+      class="ion-margin"
       data-bs-toggle="collapse"
       data-bs-target="#collapseFilters"
       aria-expanded="false"
       aria-controls="collapseFilters"
     >
-      <ion-icon name="filter"></ion-icon>&nbsp; {{ 'app.pages.characters.editsearchfilters' | translate }}
+      <ion-icon name="filter"></ion-icon>&nbsp;
+      {{ 'app.pages.characters.editsearchfilters' | translate }}
     </ion-button>
     <div class="collapse" id="collapseFilters">
-      <div class="card card-body">
-        <ion-list>
-          <ion-item *ngFor="let entry of searchFilters" lines="none">
-            <ion-label>{{ entry.title }}</ion-label>
-            <ion-checkbox
-              slot="start"
-              [(ngModel)]="entry.value"
-              (ngModelChange)="filterChanged()"
-            ></ion-checkbox>
-          </ion-item>
-        </ion-list>
-      </div>
+      <ion-card>
+        <ion-card-content>
+          <ion-list>
+            <ion-item *ngFor="let entry of searchFilters" lines="none">
+              <ion-label>{{ entry.title }}</ion-label>
+              <ion-checkbox
+                slot="start"
+                [(ngModel)]="entry.value"
+                (ngModelChange)="filterChanged()"
+              ></ion-checkbox>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
     </div>
 
     <ion-refresher

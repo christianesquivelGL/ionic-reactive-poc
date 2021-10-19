@@ -81,10 +81,7 @@
 
         <div *ngIf="selectedEntity?.vehicles?.length; else noVehicles">
           <h2>{{ 'app.label.vehicles' | translate }}:</h2>
-          <swiper
-            class="ion-margin-top"
-            [config]="swiperConfig"
-          >
+          <swiper class="ion-margin-top" [config]="swiperConfig">
             <ng-template
               *ngFor="let vehicle of selectedEntity.vehicles"
               swiperSlide
@@ -115,10 +112,7 @@
 
         <div *ngIf="selectedEntity?.starships?.length; else noStarships">
           <h2>{{ 'app.label.starships' | translate }}:</h2>
-          <swiper
-            class="ion-margin-top"
-            [config]="swiperConfig"
-          >
+          <swiper class="ion-margin-top" [config]="swiperConfig">
             <ng-template
               *ngFor="let starship of selectedEntity.starships"
               swiperSlide

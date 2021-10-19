@@ -27,7 +27,7 @@ export class ViewCharacterComponent {
     mainImg: true,
     isFavorite: true,
   };
-  swiperConfig : SwiperOptions = {
+  swiperConfig: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 20,
     // navigation: true,
