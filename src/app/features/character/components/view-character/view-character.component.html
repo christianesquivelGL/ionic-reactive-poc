@@ -83,8 +83,7 @@
           <h2>{{ 'app.label.vehicles' | translate }}:</h2>
           <swiper
             class="ion-margin-top"
-            [slidesPerView]="2"
-            [spaceBetween]="20"
+            [config]="swiperConfig"
           >
             <ng-template
               *ngFor="let vehicle of selectedEntity.vehicles"
@@ -109,6 +108,40 @@
           <ion-spinner *ngIf="loading.additionalRelations"></ion-spinner>
           <ion-text *ngIf="!loading.additionalRelations">
             {{ 'app.label.novehicles' | translate }}.
+          </ion-text>
+        </ng-template>
+
+        <hr />
+
+        <div *ngIf="selectedEntity?.starships?.length; else noStarships">
+          <h2>{{ 'app.label.starships' | translate }}:</h2>
+          <swiper
+            class="ion-margin-top"
+            [config]="swiperConfig"
+          >
+            <ng-template
+              *ngFor="let starship of selectedEntity.starships"
+              swiperSlide
+            >
+              <img
+                *ngIf="!starship.get('imgUrl')"
+                src="https://dummyimage.com/100x100.png"
+                alt=""
+              />
+              <img
+                *ngIf="starship.get('imgUrl')"
+                src="{{ starship.get('imgUrl') }}"
+                alt=""
+              />
+              {{ starship.get('name') | titlecase }}
+            </ng-template>
+          </swiper>
+        </div>
+
+        <ng-template #noStarships>
+          <ion-spinner *ngIf="loading.additionalRelations"></ion-spinner>
+          <ion-text *ngIf="!loading.additionalRelations">
+            {{ 'app.label.nostarships' | translate }}.
           </ion-text>
         </ng-template>
       </ion-card-content>

@@ -8,7 +8,8 @@ import { GiphyService } from 'src/app/providers/giphy/giphy.service';
 import { ParseUtilsService } from 'src/app/providers/parse.utils.service';
 import { CharacterService } from 'src/app/providers/swapi/character.service';
 import { TranslateProvider } from 'src/app/providers/translate/translate.service';
-import SwiperCore from 'swiper';
+import { SwiperOptions } from 'swiper';
+
 import { Character } from '../../models/character.model';
 
 @Component({
@@ -19,11 +20,19 @@ import { Character } from '../../models/character.model';
 export class ViewCharacterComponent {
   characterId = this.route.snapshot.paramMap.get('characterId');
   selectedEntity = {} as Character;
+
   loading = {
     entity: true,
     additionalRelations: true,
     mainImg: true,
     isFavorite: true,
+  };
+  swiperConfig : SwiperOptions = {
+    slidesPerView: 2,
+    spaceBetween: 20,
+    // navigation: true,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
   };
 
   constructor(

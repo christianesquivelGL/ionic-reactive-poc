@@ -33,6 +33,8 @@
   "app.label.species": "Species",
   "app.label.vehicles": "Vehicles",
   "app.label.novehicles": "No vehicles available",
+  "app.label.starships": "Starships",
+  "app.label.nostarships": "No starships available",
 
   "app.pages.auth.login": "Log In",
   "app.pages.auth.invaliduser": "Invalid User",
