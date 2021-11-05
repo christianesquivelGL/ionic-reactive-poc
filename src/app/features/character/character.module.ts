@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { SwiperModule } from 'swiper/angular';
 
+import { ApplicationPipesModule } from '../../pipes/application-pipes.module';
 import { ListCharacterComponent } from './components/list-character/list-character.component';
 import { ViewCharacterComponent } from './components/view-character/view-character.component';
 import { RootCharacterComponentRoutingModule } from './containers/root-character/root-character-routing.module';
@@ -21,6 +22,7 @@ import { RootCharacterComponent } from './containers/root-character/root-charact
     IonicModule,
     RootCharacterComponentRoutingModule,
     TranslateModule.forChild(),
+    ApplicationPipesModule,
     NgxTippyModule,
     SwiperModule,
   ],

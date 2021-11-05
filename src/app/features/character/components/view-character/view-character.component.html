@@ -93,7 +93,7 @@
               />
               <img
                 *ngIf="vehicle.get('imgUrl')"
-                src="{{ vehicle.get('imgUrl') }}"
+                src="{{ vehicle.get('imgUrl') | cloudinaryPipe:'pad300' }}"
                 alt=""
               />
               {{ vehicle.get('name') | titlecase }}
@@ -124,7 +124,7 @@
               />
               <img
                 *ngIf="starship.get('imgUrl')"
-                src="{{ starship.get('imgUrl') }}"
+                src="{{ starship.get('imgUrl') | cloudinaryPipe:'pad300' }}"
                 alt=""
               />
               {{ starship.get('name') | titlecase }}
